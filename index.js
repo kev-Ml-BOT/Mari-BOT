@@ -95,7 +95,7 @@ const altpdf = Object.keys(info.message)
 const type = altpdf[0] == "senderKeyDistributionMessage" ? altpdf[1] == "messageContextInfo" ? altpdf[2] : altpdf[1] : altpdf[0]
 const content = JSON.stringify(info.message)
 const from = info.key.remoteJid
-var body = (type === 'conversation') ? info.message.conversation : (type == 'imageMessage') ? info.message.imageMessage.caption : (type == 'videoMessage') ? info.message.videoMessage.caption : (type == 'extendedTextMessage') ? info.message.extendedTextMessage.text : (type == 'buttonsResponseMessage') ? info.message.buttonsResponseMessage.selectedButtonId : (type == 'listResponseMessage') ? info.message.listResponseMessage.singleSelectReply.selectedRowId : (type == 'templateButtonReplyMessage') ? info.message.templateButtonReplyMessage.selectedId : ''
+var body = (type === 'conversation') ? info.message.conversation : (type == 'imageMessage') ? info.message.imageMessage.caption : (type == 'videoMessage') ? info.message.videoMessage.caption : (type == 'extendedTextMessage') ? info.message.extendedTextMessage.text : (type == 'buttonsResponseMessage') ? info.message.buttonsResponseMessage.selectedButtonId : (type == 'listResponseMessage') ? info.message.listResponseMessage.singleSelectenviar.selectedRowId : (type == 'templateButtonenviarMessage') ? info.message.templateButtonenviarMessage.selectedId : ''
 
 const budy = (type === 'conversation') ? info.message.conversation : (type === 'extendedTextMessage') ? info.message.extendedTextMessage.text : ''
 
@@ -182,6 +182,51 @@ anita.downloadMediaMessage = async (message) => {
 return buffer
  } 
 
+//        ---------------- B I E N V E N I D A ---------------------------
+
+/*anita.ev.on('group-participants.update', async (anu) => {
+  if(!welkom.includes(anu.id)) return 
+  try{
+    const datosgp = await anita.groupMetadata(anu.id)
+
+    if(anu.action == 'add') {
+
+      const numerodep = anu.participants[0]
+
+      const fotito = fs.readFileSync('./archivos/media/Bienvenida.jpg')
+
+      const Bienvenida = `
+      ╭━〘𝓐𝓝𝓘𝓣𝓐-𝓑𝓞𝓣𝐎𝐓〙\n┃  ⛥╭──────────────\n๖ۣۜۜ͜͡𝐇𝐨𝐥𝐚ঔৣֳ᷌᷈͜͡ ${numerodep}\n💖 𝙱𝙸𝙴𝙽𝚅𝙴𝙽𝙸𝙳@\n┃ ⛥│🤴ᩭ✎𝙽Ú𝙼𝙴𝚁𝙾 𝙳𝙴 𝙼𝙸 𝙲𝚁𝙴𝙰𝙳𝙾𝚁\n┃ ⛥│📔ᩭ✎http://wa.me/573136463626\n┃ ⛥│📚ᩭ✎𝙴𝙽 𝙴𝚂𝚃𝙴 𝙶𝚁𝚄𝙿𝙾 𝙿𝚄𝙴𝙳𝙴𝚂 𝙴𝙽𝙲𝙾𝙽𝚃𝚁𝙰𝚁\n┃ ⛥│🍀ᩭ✎𝙰𝙼𝙸𝚂𝚃𝙰𝙳𝙴𝚂\n┃ ⛥│🤝ᩭ✎𝙰𝙼𝙸𝙶𝙾𝚂\n┃ ⛥│❤️📚ᩭ✎𝙳𝙴𝚂𝙼𝙰𝙳𝚁𝙴┃ ⛥│◦➛😇ᩭ✎𝙲𝙾𝚃𝙾𝚁𝚁𝙴𝙾 𝚈 𝙼Á𝚂\n┃ ⛥│⁉️ᩭ✎𝙰𝚅𝙸𝚂𝙾 𝙸𝙼𝙿𝙾𝚁𝚃𝙰𝙽𝚃𝙴:\n𝙿𝚘𝚛 𝚏𝚊𝚟𝚘𝚛 𝙻𝚎𝚎 𝚕𝚊𝚜 𝚛𝚎𝚐𝚕𝚊𝚜 𝚍𝚎𝚕 𝚐𝚛𝚞𝚙𝚘 𝚙𝚊𝚛𝚊 𝚚𝚞𝚎 𝚎𝚟𝚒𝚝𝚎𝚜 𝚜𝚎𝚛 𝚎𝚕𝚒𝚖𝚒𝚗𝚊𝚍𝚘 𝚢 𝚎𝚟𝚒𝚝𝚎𝚜 𝚝𝚎𝚗𝚎𝚛 𝚙𝚛𝚘𝚋𝚕𝚎𝚖𝚊𝚜 𝚌𝚘𝚗 𝚌𝚛𝚎𝚊𝚍𝚘𝚛 𝚍𝚎𝚕 𝚐𝚛𝚞o\n┃ ⛥│\n┃ ⛥│◦➛🌱OF-KEV𝐈\n┃ ⛥╰───────────\n╰━━━━━━━━━━━──⊷'
+
+      ${numerodep}
+
+      `
+      anita.sendMessage(anu.id,{image : fotito, caption : Bienvenida})
+     }
+
+     if(anu.action == 'remove') {
+
+      const numerodep = anu.participants[0]
+
+      const fotito2 = fs.readFileSync('./archivos/media/Despedida.jpg')
+
+      const Despedida = `
+     
+       ╭━〘𝓐𝓝𝓘𝓣𝓐-𝓑𝓞𝓣𝐎𝐓〙\n┃ ⛥╭──────────────\n${numerodep}\n𝐒𝐚𝐥𝐢ó 𝐝𝐞𝐥 𝐠𝐫𝐮𝐩𝐨 𝐧𝐢 𝐦𝐨𝐝𝐨 𝐪𝐮𝐞 𝐭𝐞 𝐯𝐚𝐲𝐚 𝐛𝐢𝐞𝐧 𝐇𝐚𝐬𝐭𝐚 𝐥𝐚 𝐩𝐫ó𝐱𝐢𝐦𝐚 𝐪𝐮𝐞 𝐃𝐢𝐨𝐬 𝐭𝐞 𝐛𝐞𝐧𝐝𝐢𝐠𝐚\n┃ ⛥│🌱OF-KEV𝐈☘\n┃ ⛥╰───────────\n╰━━━━━━━━━━━──⊷'
+      `
+      anita.sendMessage(anu.id,{image : fotito2, caption : Despedida})
+    }
+
+  } catch(e) {
+      console.log('Error: % s', color("red"))
+     }
+    })
+
+// ----------------------- FIN BIENVENIDA -------------------
+
+*/
+
+
  //  ASYNC
 
 
@@ -255,12 +300,12 @@ anita.sendMessage(from,{ image : imagen,caption : caption }, {quoted :  info})
 if (budy.includes("https://")){
   if (!isGroup) return
   if (!isAntiLink) return
-  if (isGroupAdmins) return enviar(`*${pushname}* eres admin, así que no te voy a prohibir`)
+  if (isGroupAdmins) return enviar(`*${pushname}*UFF de la que te salvas, eres admin, así que no te voy a prohibir`)
          var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
   setTimeout( () => {
           enviar(`*𝑒𝑙𝑖𝑚𝑖𝑛𝑎𝑑𝑜 𝑑el 𝑔𝑟𝑢𝑝𝑜*`)
            }, 100)
-           enviar(`*_「 link  detectado 」_*\n*${pushname}* Voz sera baneado del gupo *${groupMetadata.subject}*`)
+           enviar(`*_「 link  detectado 」_*\n*${pushname}*--Uy grave la cosa vas a morir--*${groupMetadata.subject}*`)
   setTimeout( () => {
   anita.groupParticipantsUpdate(from, [Kick], "remove").catch((e) => {enviar(`*ERROR:* ${e}`)}) 
             }, 10)
@@ -271,12 +316,12 @@ if (budy.includes("https://")){
   if (budy.includes("wa.me")){
   if (!isGroup) return
   if (!isAntiLink) return
-  if (isGroupAdmins) return enviar(`*${pushname}* eres admin, así que no te voy a prohibir`)
+  if (isGroupAdmins) return enviar(`*${pushname}*UFF de la que te salvas, eres admin, así que no te voy a prohibir`)
          var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
   setTimeout( () => {
           enviar(`*𝑒𝑙𝑖𝑚𝑖𝑛𝑎𝑑𝑜 𝑑el 𝑔𝑟𝑢𝑝𝑜*`)
            }, 100)
-           enviar(`*_「 link  detectado 」_*\n*${pushname}* voz seras baneado *${groupMetadata.subject}*`)
+           enviar(`*_「 link  detectado 」_*\n*${pushname}* --Uy grave la cosa vas a morir-- *${groupMetadata.subject}*`)
   setTimeout( () => {  
   anita.groupParticipantsUpdate(from, [Kick], "remove").catch((e) => {enviar(`*ERROR:* ${e}`)}) 
             }, 10)
@@ -305,43 +350,6 @@ if (budy.includes("https://")){
 
 //        ---------------- B I E N V E N I D A ---------------------------
 
-anita.ev.on('group-participants.update', async (anu) => {
-    if(!welkom.includes(anu.id)) return 
-    try{
-      const datosgp = await anita.groupMetadata(anu.id)
-  
-      if(anu.action == 'add') {
-  
-        const numerodep = anu.participants[0]
-  
-        const fotito = fs.readFileSync('./archivos/media/Bienvenida.jpg')
-  
-        const Bienvenida = `
-        ╭━〘𝓐𝓝𝓘𝓣𝓐-𝓑𝓞𝓣𝐎𝐓〙\n┃  ⛥╭──────────────\n๖ۣۜۜ͜͡𝐇𝐨𝐥𝐚ঔৣֳ᷌᷈͜͡ ${numerodep}\n💖 𝙱𝙸𝙴𝙽𝚅𝙴𝙽𝙸𝙳@\n┃ ⛥│🤴ᩭ✎𝙽Ú𝙼𝙴𝚁𝙾 𝙳𝙴 𝙼𝙸 𝙲𝚁𝙴𝙰𝙳𝙾𝚁\n┃ ⛥│📔ᩭ✎http://wa.me/573136463626\n┃ ⛥│📚ᩭ✎𝙴𝙽 𝙴𝚂𝚃𝙴 𝙶𝚁𝚄𝙿𝙾 𝙿𝚄𝙴𝙳𝙴𝚂 𝙴𝙽𝙲𝙾𝙽𝚃𝚁𝙰𝚁\n┃ ⛥│🍀ᩭ✎𝙰𝙼𝙸𝚂𝚃𝙰𝙳𝙴𝚂\n┃ ⛥│🤝ᩭ✎𝙰𝙼𝙸𝙶𝙾𝚂\n┃ ⛥│❤️📚ᩭ✎𝙳𝙴𝚂𝙼𝙰𝙳𝚁𝙴┃ ⛥│◦➛😇ᩭ✎𝙲𝙾𝚃𝙾𝚁𝚁𝙴𝙾 𝚈 𝙼Á𝚂\n┃ ⛥│⁉️ᩭ✎𝙰𝚅𝙸𝚂𝙾 𝙸𝙼𝙿𝙾𝚁𝚃𝙰𝙽𝚃𝙴:\n𝙿𝚘𝚛 𝚏𝚊𝚟𝚘𝚛 𝙻𝚎𝚎 𝚕𝚊𝚜 𝚛𝚎𝚐𝚕𝚊𝚜 𝚍𝚎𝚕 𝚐𝚛𝚞𝚙𝚘 𝚙𝚊𝚛𝚊 𝚚𝚞𝚎 𝚎𝚟𝚒𝚝𝚎𝚜 𝚜𝚎𝚛 𝚎𝚕𝚒𝚖𝚒𝚗𝚊𝚍𝚘 𝚢 𝚎𝚟𝚒𝚝𝚎𝚜 𝚝𝚎𝚗𝚎𝚛 𝚙𝚛𝚘𝚋𝚕𝚎𝚖𝚊𝚜 𝚌𝚘𝚗 𝚌𝚛𝚎𝚊𝚍𝚘𝚛 𝚍𝚎𝚕 𝚐𝚛𝚞o\n┃ ⛥│\n┃ ⛥│◦➛🌱OF-KEV𝐈\n┃ ⛥╰───────────\n╰━━━━━━━━━━━──⊷'
-  
-        ${numerodep}
-  
-        `
-        anita.sendMessage(anu.id,{image : fotito, caption : Bienvenida})
-       }
-  
-       if(anu.action == 'remove') {
-  
-        const numerodep = anu.participants[0]
-  
-        const fotito2 = fs.readFileSync('./archivos/media/Despedida.jpg')
-  
-        const Despedida = `
-       
-         ╭━〘𝓐𝓝𝓘𝓣𝓐-𝓑𝓞𝓣𝐎𝐓〙\n┃ ⛥╭──────────────\n${numerodep}\n𝐒𝐚𝐥𝐢ó 𝐝𝐞𝐥 𝐠𝐫𝐮𝐩𝐨 𝐧𝐢 𝐦𝐨𝐝𝐨 𝐪𝐮𝐞 𝐭𝐞 𝐯𝐚𝐲𝐚 𝐛𝐢𝐞𝐧 𝐇𝐚𝐬𝐭𝐚 𝐥𝐚 𝐩𝐫ó𝐱𝐢𝐦𝐚 𝐪𝐮𝐞 𝐃𝐢𝐨𝐬 𝐭𝐞 𝐛𝐞𝐧𝐝𝐢𝐠𝐚\n┃ ⛥│🌱OF-KEV𝐈☘\n┃ ⛥╰───────────\n╰━━━━━━━━━━━──⊷'
-        `
-        anita.sendMessage(anu.id,{image : fotito2, caption : Despedida})
-      }
-
-    } catch(e) {
-        console.log('Error: % s', color("red"))
-       }
-      })
 
 // ----------------------- FIN BIENVENIDA -------------------
 
@@ -391,12 +399,12 @@ registrate: ` *💫  Hola ${pushname}*, *registrese Porfavor*: ${prefixo}rg nomb
 rg: " *💫  Querido Usuario , usted ya se encuentra registrado, no haga spam porfavor* ",
 premium: " *💫  Querido Usuario , para poder usar este comando debes comprar la versión premiun* ",
 bot: " *💫  Querido Usuario , este comando es exclusivo solo para el Bot* ",
-dono: " *💫  Querido Usuario , este comando está bloqueado y solo puede ser usado por Juls Modders* ",
+dono: " *💫  Querido Usuario , este comando está bloqueado y solo puede ser usado por kev OFC* ",
 grupo: " *💫  Querido Usuario , este comando es solo para grupos* ",
 privado: " *💫  Querido Usuario , este comando es solo para chats Privados* ",
 admin: " *💫  Querido Usuario , este comando es solo para Administradores* ",
 botadmin: " *💫  Querido Usuario , Para usar este comando el bot debe ser Administrador* ",
-error: " *💫  Querido Usuario , intentelo nuevamente, si el error persiste comuniquese con Juls Modders* ",
+error: " *💫  Querido Usuario , intentelo nuevamente, si el error persiste comuniquese con kev OFC* ",
 link : " *💫  Querido Usuario , Porfavor coloque un Link* ",
 nombre: " *💫  Querido Usuario , Porfavor indiqueme que debo buscar*",
 gif: " *💫  Querido Usuario , remarque un Sticker en Movimiento Porfavor*",
@@ -509,7 +517,8 @@ case 'agregar' :
 
           case 'welcome' : 
           case 'bienvenida': 
-          if(!isGroup) return enviar(respuesta.grupos)
+          enviar('*HOLA QUERIDO USUARIO DEVIDO A UN ERROR EL COMANDO WELCOME(BIENVENIDA) ESTA SIN FUNCIONAR, GRACIAS POR SU ATENCION..*')
+          /*if(!isGroup) return enviar(respuesta.grupos)
           if(args.length<1 ) return 
           enviar('👀✍ESCRIBA 1 PARA ACTIVAR Y 0 PARA DESACTIVAR')
           if(!isGroupAdmins) return enviar ('✨😎𝕝𝕠 𝕤𝕚𝕖𝕟𝕥𝕠 𝕞𝕚 𝕜𝕚𝕟𝕘 , 𝕟𝕠 𝕖𝕣𝕖𝕤 𝕦𝕟 𝕒𝕕𝕞𝕚𝕟𝕚𝕤𝕥𝕣𝕒𝕕𝕠𝕣 𝕕𝕖 𝕝𝕠𝕤 𝔾𝕆𝔻𝕊😎✨')
@@ -532,7 +541,7 @@ case 'agregar' :
             enviar('1 para activar y 0 para desactivar')
           }
           break
-
+*/
 
           
 
@@ -658,7 +667,7 @@ var stream = await downloadContentFromMessage(info.message.imageMessage || info.
       exec(`webpmux -set exif ./dados/${ran} -o ./${ran}`, async (error) => {
       
        await enviarfiguimg(from, fs.readFileSync(`./${ran}`), info, {
- packname: 'Mari-BOT', author: 'Mari-BOT'
+ packname: 'Mari-BOT', author: 'Kev-OFC'
 })
 				
         fs.unlinkSync(`./${ran}`)
@@ -686,6 +695,12 @@ await enviarfiguvid(from, util.format(upload), info, {
 }) 
 }
           break 
+
+// YTMP3
+
+
+
+
 
 
 
@@ -759,7 +774,7 @@ case 'menu1':
 ╭─────────────◆ 
 ┃✯- ℕ𝕊𝔽𝕎
 ┃ ✯╭──────────◆
-┃ ✯│𝔼𝕁𝔼𝕄ℙ𝕃𝕆 (/nsfwero)
+┃ ✯│𝔼𝕁𝔼𝕄ℙ𝕃𝕆 (${prefixo}nsfwero)
 ┃ ✯│${prefixo} nsfwahegao
 ┃ ✯│${prefixo} nsfwass
 ┃ ✯│${prefixo} nsfwloli
@@ -2051,7 +2066,7 @@ case 'yotsuba':{
 
 // ------------------ M E N U 4 ------------- G R U P O S ------------
 
-    case 'menu3':
+    case 'menu4':
         enviar('Espera el menu se esta enviando')
          const menu4 = fs.readFileSync('./archivos/media/menu.jpg')
         const men4 = `
