@@ -303,7 +303,13 @@ const enviarfiguimg = async (jid, path, quoted, options = {}) => {
 
 // fin sticker
 
+const enviarvideoscap = (videos,caption) => {
+    anita.sendMessage(from,{ video : videos, caption : caption }, {quoted :  contato})
+  }
 
+const enviargifs = (gifs) => {
+  anita.sendMessage(from,{ gif : gifs }, {quoted :  contato})
+}
 
 const enviarsticker = (Sticker) => {
   anita.sendMessage(from,{ Sticker : Sticker }, {quoted :  contato})
@@ -430,7 +436,8 @@ link : " *💫  Querido Usuario , Porfavor coloque un Link* ",
 nombre: " *💫  Querido Usuario , Porfavor indiqueme que debo buscar*",
 gif: " *💫  Querido Usuario , remarque un Sticker en Movimiento Porfavor*",
 especial : "*💫  Querido Usuario , está Prohibido escribir emojis o caracteres especiales*",
-menu : "*💫 🤖:)PorFavor Espere , El Menu se esta enviando :)🤖"
+menu : "*💫 🤖:)PorFavor Espere , El Menu se esta enviando :)🤖",
+stick : "*💫 Querido Usuario , Por Favor Espere El Sticker Se Esta Creando.....* "
 }
 
 // Anti Spam
@@ -683,6 +690,7 @@ case 'casino':
 // CASE COMPLETA
 
 case 'figu': case "figu2" : case "stickergif":  case "stickergif2": case 's':
+  enviar(respuesta.stick)
  if ((isMedia && !info.message.videoMessage || isQuotedImage)) {      
 var stream = await downloadContentFromMessage(info.message.imageMessage || info.message.extendedTextMessage?.contextInfo.quotedMessage.imageMessage, 'image')
     var buffer = Buffer.from([])
@@ -738,7 +746,7 @@ await enviarfiguvid(from, util.format(upload), info, {
 //                                                  ----------------- M E N U S ---------------------------
 case 'menu': case 'help': case 'bot':
 enviar(respuesta.menu)
-const menus = fs.readFileSync('./archivos/media/menu.jpg')
+const menus = fs.readFileSync('./archivos/media/4397.mp4')
 const menuss = `
 
 ╭─────────────◆ 
@@ -755,6 +763,7 @@ const menuss = `
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
 ┃ ✯│▢ɴᴜᴍᴇʀᴏ: wa.me/+573136463626
 ┃ ✯│▢ғᴇᴄʜᴀ:${hora}
+┃ ✯│${prefixo}infobot
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
 
@@ -770,7 +779,12 @@ const menuss = `
 ┃ ✯│${prefixo} menu7
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
-
+╭─────────────◆ 
+┃✯- STICKERS
+┃ ✯╭──────────◆
+┃ ✯│${prefixo}S , figu
+┃ ✯╰───────────◆
+╰━━━━━━━━━━━──⊷
 ╭─────────────◆ 
 ┃✯----luci-BOT----⦿
 ┃✯----V-1.0----⦿
@@ -779,11 +793,12 @@ const menuss = `
 
 
 `
-enviarimagencap(menus,menuss)
+enviarvideoscap(menus,menuss)
 break
 
 
 //                   --------- I N F O ------------
+
 
 case 'infobot':
   enviar(respuesta.espere)
@@ -795,25 +810,31 @@ const infoo= `
 ║
 ╠➥ *FECHA : ${data}*
 ╠➥ *HORA : ${hora}
-╠➥ *NAME : MARI BOT*
+╠➥ *NAME : LUCI BOT*
 ╠➥ *VERSION : 1.0*
 ╠➥ *OWNER : kev OFC
 ╠➥ *GITHUB : NA no lo paso aun XD*
 ╠➥ *Grupo Oficial : https://chat.whatsapp.com/IngPf7dz8GLE6duvYsyCMC *
 ║
-╚═〘 MARI BOT 〙
+╚═〘 LUCI BOT 〙
 
 
 
 `
-enviarimagencap(info,infoo)
+enviarimagencap(infos,infoo)
 break
+
+//      ------------- D O N A C I O N -----------------
+
+
+
+
 
 //                           ----------------------M E N N U 1 ---- N S F W  --------------------
 
 case 'menu1':
     enviar(respuesta.menu)
-    const menu1 = fs.readFileSync('./archivos/media/menu.jpg')  
+    const menu1 = fs.readFileSync('./archivos/media/menu1.mp4')  
     const men1 = `
   
 ╭─────────────◆ 
@@ -871,7 +892,7 @@ case 'menu1':
 
 
 `
-enviarimagencap(menu1,men1)
+enviarvideoscap(menu1,men1)
 break
 //--------------------- C A S E S --- D E ---- N S F W ------------------
 
@@ -1360,7 +1381,7 @@ case 'loli' :{
 
 case 'menu3':
 enviar(respuesta.menu)
- const menu3 = fs.readFileSync('./archivos/media/menu.jpg')
+ const menu3 = fs.readFileSync('./archivos/media/waifus.mp4')
 const men3 = `
 ╭─────────────◆ 
 ┃ ✯〘luci-BOT〙
@@ -1450,7 +1471,7 @@ const men3 = `
 ╰━━━━━━━━━━━──⊷
 
 `
-enviarimagencap(menu3,men3)
+enviarvideoscap(menu3,men3)
 break
 
 //                           ------------- C A S E S ----- D E ---- W A I F U S -----------------
