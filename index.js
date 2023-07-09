@@ -802,7 +802,7 @@ break
 
 case 'infobot':
   enviar(respuesta.espere)
-const infos = fs.readFileSync('./archivos/media/stickers.webp')  
+const infos = fs.readFileSync('./archivos/media/menu.jpg')  
 const infoo= `
 
 
@@ -821,7 +821,7 @@ const infoo= `
 
 
 `
-enviarfiguimg(infos,infoo)
+enviarimagencap(infos,infoo)
 break
 
 //      ------------- D O N A C I O N -----------------
