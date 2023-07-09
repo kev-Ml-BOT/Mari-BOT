@@ -31,13 +31,17 @@ const { TelegraPh } = require("./archivos/telegraPh.js")
  const {
  tmpdir
 } = require("os")
+const { error } = require("console")
+const { mimeTypes } = require("file-type")
+const { everyLimit } = require("async")
+const { env } = require("process")
 // CONSTANTES CREADAS
 
 prefixo = "/" // Cambiar Prefijo
 nomebot = "luci 1.0" // Cambiar nombre del Bot
 var Creador = "Kev OFC" // No cambiar
 const welkom = JSON.parse(fs.readFileSync('./archivos/welkom.json'))
-
+const autostick = JSON.parse(fs.readFileSync('./archivos/autostick.json'))
 
 // No borrar
 nomedono = "Kev OFC" // No cambiar
@@ -134,6 +138,9 @@ const colom = moment().tz('America/Bogota').format('DD/MM HH:mm')
 const data = new Date().toLocaleDateString('pt-BR', { ...colom, day: '2-digit', month: '2-digit', year: '2-digit' })
 const hora = new Date().toLocaleTimeString('pt-BR', colom)
 const contato = {key : {participant : '0@s.whatsapp.net'},message: {contactMessage:{displayName: `${pushname}`}}}
+const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = mimeTypes
+const isAutoSt = isGroup ? autostick.includes(from) : false
+const isAdmin = groupAdmins.includes(sender) || false
 
 // ASYNC FUNCION
 
@@ -227,6 +234,16 @@ return buffer
 */
 
 
+
+
+
+
+
+
+
+
+
+
  //  ASYNC
 
 
@@ -285,6 +302,8 @@ const enviarfiguimg = async (jid, path, quoted, options = {}) => {
 
 
 // fin sticker
+
+
 
 const enviarsticker = (Sticker) => {
   anita.sendMessage(from,{ Sticker : Sticker }, {quoted :  contato})
@@ -442,8 +461,10 @@ if (isGroup && isGroup) console.log(`${color('┏━━━━━━━━━┅�
 
 switch(comando) {
 
+
+
     case "promover":
-    if (!isGroup) return enviar(respuesta.grupos)
+    if (!isGroup) return enviar(respuesta.grupo)
     if (!isGroupAdmins) return enviar(respuesta.admin)
     if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
     if (q < 1) return enviar("🎭 ¿Dónde está el número? ")
@@ -460,7 +481,7 @@ switch(comando) {
     case 'tagall':
     case 'invocar':
     case 'hidetag':
-    if (!isGroup) return enviar(respuesta.grupos)
+    if (!isGroup) return enviar(respuesta.grupo)
     if (!isGroupAdmins) return enviar(respuesta.admin)
     if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
     members_id = []
@@ -484,7 +505,7 @@ switch(comando) {
     break
 
     case "promover":
-        if (!isGroup) return enviar(respuesta.grupos)
+        if (!isGroup) return enviar(respuesta.grupo)
         if (!isGroupAdmins) return enviar(respuesta.admin)
         if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
         if (q < 1) return enviar("🎭 ¿Dónde está el número? ")
@@ -512,7 +533,7 @@ case 'agregar' :
         break
    
         case "ban":
-          if (!isGroup) return enviar(respuesta.grupos)
+          if (!isGroup) return enviar(respuesta.grupo)
           if (!isGroupAdmins) return enviar(respuesta.admin)
           if (q < 1) return enviar("🎭 👀✍𝔼𝕤𝕔𝕣𝕚𝕓𝕖 𝕖𝕝 𝕟𝕦𝕞𝕖𝕣𝕠 𝕕𝕖 𝕝𝕒 𝕡𝕖𝕣𝕤𝕠𝕟𝕒 𝕢𝕦𝕖 𝕕𝕖𝕤𝕖𝕒𝕤 𝕖𝕝𝕚𝕞𝕚𝕟𝕒𝕣 𝕤𝕠𝕪 𝕦𝕟a 𝔹𝕆𝕋 𝕟𝕠 𝕒𝕕𝕚𝕧𝕚𝕟a🤔🔮 ")
           if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
@@ -2227,6 +2248,15 @@ enviar(respuesta.erro)
 break
 
 
+case 'adminlist':
+  if (!isGroup) return enviar(from, 'admins del grupo!', id)
+  let mimin = ''
+  for (let admon of groupAdmins) {
+      mimin += `➸ @${admon.split(/@c.us/g, '')}\n` 
+  }
+  await anita.sendMessage(from, mimin)
+  break
+
 
 //                 -------------------- J U E G O S -----------------
 
@@ -2623,6 +2653,48 @@ case 'fraseromantica': case 'frases' :
 
  case 'menu7':
   enviar('EL MENU7 ESTA EN DESARROLLO')
+
+
+        break
+
+        case 'autostick':            
+if (!isGroup) return enviar(respuesta.grupo)
+if (!isAdmin) return enviar(respuesta.groupAdmins)     
+if (args.length < 1) return enviar('Escribe *1* para activar')                    
+if (args[0] === '1') {                             
+	if (isAutoSt) return enviar('*Ya está activo*')          
+	autostick.push(from)             
+	fs.writeFileSync('./archivos/autostick.json', JSON.stringify(autostick))      
+	enviar(`*[ Activado ]*`)  
+	enviar(`*ahora, todas las fotos que se envien en el grupo se convertiran en sticker automaticamente*`)  
+} else if (args[0] === '0') {           
+	var ini = autostick.indexOf(from)
+	autostick.splice(ini, 1)                  
+	fs.writeFileSync('./archivos/autostick.json', JSON.stringify(autostick))      
+	reply(`Desactivado`)              
+} else {                                
+	enviar('1 para activar, 0 para desactivar')        
+}                          
+break
+
+case 'takestick':
+case 'robar':
+if (!isQuotedSticker) return enviar(`Etiqueta un stiquer y escribe: *${prefixo}takestick nombre|autor*`)
+const encmediats = JSON.parse(JSON.stringify(quoted).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+var kls = q
+var pack = kls.split("|")[0];
+var author2 = kls.split("|")[1];
+if (!q) return enviar('*Y el nombre de autor y paquete?*')
+if (!pack) return enviar(`*Porfavor escribe bien el formato: ${prefixo}robar nombre|autor*`)
+if (!author2) return enviar(`*Porfavor escribe bien el formato: ${prefixo}robar nombre|autor*`)
+const dlfile = await anita.downloadMediaMessage(encmediats)
+enviar(respuesta.espere)
+const bas64 = `data:image/jpeg;base64,${dlfile.toString('base64')}`
+var mantap = await convertSticker(bas64, `${author2}`, `${pack}`)
+var imageBuffer = new Buffer.from(mantap, 'base64');
+anita.sendMessage(from, imageBuffer, sticker, {quoted: contato})
+addFilter(from)
+break
 
 //Comandos sin prefixo
 
