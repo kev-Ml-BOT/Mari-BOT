@@ -857,6 +857,7 @@ break
  //NSFW
  case 'lolis':
     case 'nsfwloli':{
+      enviar(respuesta.espere)
       waifuddd = await axios.get('https://trevorestapi.onrender.com/api/anime/nsfwloli?apikey=clover')
       templateMassage = {
       image: {url:waifuddd.data.url,
@@ -870,6 +871,7 @@ break
   
       case 'nekos':
       case 'nsfwneko':{
+        enviar(respuesta.espere)
         waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/neko?apikey=clover')
         templateMassage = {
         image: {url:waifuddd.data.url,
@@ -883,6 +885,7 @@ break
   
         case 'ahegao' :
         case 'nsfwahegao':{
+          enviar(respuesta.espere)
           waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/ahegao?apikey=clover')
           templateMassage = {
           image: {url:waifuddd.data.url,
@@ -896,6 +899,7 @@ break
    
           case 'pussy':
           case 'nsfwpussy':{
+            enviar(respuesta.espere)
             waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/pussy?apikey=clover')
             templateMassage = {
             image: {url:waifuddd.data.url,
@@ -909,6 +913,7 @@ break
   
            case 'ero':
             case 'nsfwero':{
+              enviar(respuesta.espere)
               waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/ero?apikey=clover')
               templateMassage = {
               image: {url:waifuddd.data.url,
@@ -922,6 +927,7 @@ break
   
               case 'cum':
               case 'nsfwcum':{
+                enviar(respuesta.espere)
                 waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/cum?apikey=clover')
                 templateMassage = {
                 image: {url:waifuddd.data.url,
@@ -935,6 +941,7 @@ break
   
                 case 'orgy':
                 case 'nsfworgy':{
+                  enviar(respuesta.espere)
                   waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/orgy?apikey=clover')
                   templateMassage = {
                   image: {url:waifuddd.data.url,
@@ -948,6 +955,7 @@ break
   
                   case 'bdsm' :
                   case 'nsfwbdsm':{
+                    enviar(respuesta.espere)
                     waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/bdsm?apikey=clover')
                     templateMassage = {
                     image: {url:waifuddd.data.url,
@@ -961,6 +969,7 @@ break
   
                     case 'yuri':
                     case 'nsfwyuri':{
+                      enviar(respuesta.espere)
                       waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/yuri?apikey=clover')
                       templateMassage = {
                       image: {url:waifuddd.data.url,
@@ -974,6 +983,7 @@ break
   
                     case 'hentai' :
                     case 'nsfwhentai':{
+                      enviar(respuesta.espere)
                       waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/hentai?apikey=clover')
                       templateMassage = {
                       image: {url:waifuddd.data.url,
@@ -987,6 +997,7 @@ break
   
                       case 'ass' :
                     case 'nsfwass':{
+                      enviar(respuesta.espere)
                       waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/ass?apikey=clover')
                       templateMassage = {
                       image: {url:waifuddd.data.url,
@@ -1000,6 +1011,7 @@ break
   
                       case 'cuckold' :
                         case 'nsfwcuckold':{
+                          enviar(respuesta.espere)
                           waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/cuckold?apikey=clover')
                           templateMassage = {
                           image: {url:waifuddd.data.url,
@@ -1013,6 +1025,7 @@ break
   
                           case 'femdom' :
                             case 'nsfwfemdom':{
+                              enviar(respuesta.espere)
                               waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/femdom?apikey=clover')
                               templateMassage = {
                               image: {url:waifuddd.data.url,
@@ -1026,6 +1039,7 @@ break
   
                               case 'glasses' :
                                 case 'nsfwglasses':{
+                                  enviar(respuesta.espere)
                                   waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/glasses?apikey=clover')
                                   templateMassage = {
                                   image: {url:waifuddd.data.url,
@@ -1039,6 +1053,7 @@ break
   
                                   case 'foot' :
                                     case 'nsfwfoot':{
+                                      enviar(respuesta.espere)
                                       waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/foot?apikey=clover')
                                       templateMassage = {
                                       image: {url:waifuddd.data.url,
@@ -1052,6 +1067,7 @@ break
   
                                      case 'gifs' :
                                        case 'nsfwgifs':{
+                                        enviar(respuesta.espere)
                                          waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/gifs?apikey=clover')
                                           templateMassage = {
                                           image: {url:waifuddd.data.url,
@@ -1065,6 +1081,7 @@ break
                           
                                           case 'mangas' :
                                            case 'nsfwmangas':{
+                                            enviar(respuesta.espere)
                                               waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/manga?apikey=clover')
                                                templateMassage = {
                                                image: {url:waifuddd.data.url,
@@ -1078,6 +1095,7 @@ break
   
                                                case 'panties' :
                                                 case 'nsfwpanties':{
+                                                  enviar(respuesta.espere)
                                                    waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/panties?apikey=clover')
                                                     templateMassage = {
                                                     image: {url:waifuddd.data.url,
@@ -1091,6 +1109,7 @@ break
   
    case 'tentacles' :
    case 'nsfwtentacles':{
+    enviar(respuesta.espere)
    waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/tentacles?apikey=clover')
    templateMassage = {
    image: {url:waifuddd.data.url,
@@ -1104,6 +1123,7 @@ break
   
    case 'zentai' :
     case 'nsfwzentai':{
+      enviar(respuesta.espere)
        waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/zettai?apikey=clover')
         templateMassage = {
         image: {url:waifuddd.data.url,
@@ -1117,6 +1137,7 @@ break
   
         case 'thighs' :
           case 'nsfwthighs':{
+            enviar(respuesta.espere)
              waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/thighs?apikey=clover')
               templateMassage = {
               image: {url:waifuddd.data.url,
@@ -1130,6 +1151,7 @@ break
                                                
               case 'blowjob' :
                 case 'nsfwblowjob':{
+                  enviar(respuesta.espere)
                    waifuddd = await axios.get('https://trevorestapi.onrender.com/api/nsfw/blowjob?apikey=clover')
                     templateMassage = {
                     image: {url:waifuddd.data.url,
@@ -1192,6 +1214,7 @@ break
 // -------------------- C A S E S ---- D E --- I M A G E N E S ------------
 
 case 'loli' :{
+  enviar(respuesta.espere)
     waifuddd = await axios.get('https://trevorestapi.onrender.com/api/anime/loli?apikey=clover')
     templateMassage = {
     image: {url:waifuddd.data.url,
@@ -1205,6 +1228,7 @@ case 'loli' :{
     break
     
     case 'neko':{
+      enviar(respuesta.espere)
     waifuddd = await axios.get('https://waifu.pics/api/sfw/neko')
     templateMassage = {
     image: {url:waifuddd.data.url,
@@ -1217,6 +1241,7 @@ case 'loli' :{
     break
     
     case 'waifu':{
+      enviar(respuesta.espere)
       waifuddd = await axios.get('https://trevorestapi.onrender.com/api/anime/waifu?apikey=clover')
       templateMassage = {
       image: {url:waifuddd.data.url,
@@ -1229,6 +1254,7 @@ case 'loli' :{
       break
 
     case 'waifu2':{
+      enviar(respuesta.espere)
     waifuddd = await axios.get('https://waifu.pics/api/sfw/waifu')
     templateMassage = {
     image: {url:waifuddd.data.url,
@@ -1241,6 +1267,7 @@ case 'loli' :{
     break
 
     case 'wallpaperaesthetic':{
+      enviar(respuesta.espere)
       waifuddd = await axios.get('https://trevorestapi.onrender.com/api/wallpaper/aesthetic?apikey=clover')
       templateMassage = {
       image: {url:waifuddd.data.url,
@@ -1253,6 +1280,7 @@ case 'loli' :{
       break
 
       case 'wallpaperanime':{
+        enviar(respuesta.espere)
         waifuddd = await axios.get('https://trevorestapi.onrender.com/api/anime/anime?apikey=clover')
         templateMassage = {
         image: {url:waifuddd.data.url,
@@ -1265,6 +1293,7 @@ case 'loli' :{
         break
 
         case 'wallpapersatanic':{
+          enviar(respuesta.espere)
           waifuddd = await axios.get('https://trevorestapi.onrender.com/api/wallpaper/satanic?apikey=clover')
           templateMassage = {
           image: {url:waifuddd.data.url,
@@ -1277,6 +1306,7 @@ case 'loli' :{
           break
 
           case 'wallpaperciberspace':{
+            enviar(respuesta.espere)
             waifuddd = await axios.get('https://trevorestapi.onrender.com/api/wallpaper/cyberspace?apikey=clover')
             templateMassage = {
             image: {url:waifuddd.data.url,
@@ -1289,6 +1319,7 @@ case 'loli' :{
             break
 
         case 'wallpapergamer':{
+          enviar(respuesta.espere)
           waifuddd = await axios.get('https://trevorestapi.onrender.com/api/wallpaper/gaming?apikey=clover')
           templateMassage = {
           image: {url:waifuddd.data.url,
@@ -1404,7 +1435,7 @@ break
 //                           ------------- C A S E S ----- D E ---- W A I F U S -----------------
 
 case 'yotsuba':{
-    enviar('Un momento porfavor')
+  enviar(respuesta.espere)
     waifuddd = await axios.get('https://trevorestapi.onrender.com/api/anime/yotsuba?apikey=clover')
     templateMassage = {
     image: {url:waifuddd.data.url,
