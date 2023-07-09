@@ -34,13 +34,13 @@ const { TelegraPh } = require("./archivos/telegraPh.js")
 // CONSTANTES CREADAS
 
 prefixo = "/" // Cambiar Prefijo
-nomebot = "luci 4.0" // Cambiar nombre del Bot
-var Creador = "Kev OFS" // No cambiar
+nomebot = "luci 1.0" // Cambiar nombre del Bot
+var Creador = "Kev OFC" // No cambiar
 const welkom = JSON.parse(fs.readFileSync('./archivos/welkom.json'))
 
 
 // No borrar
-nomedono = "Kev MO" // No cambiar
+nomedono = "Kev OFC" // No cambiar
 numerodono = "+573136462636" // No cambiar
 nomover= `
 ● Creado Por Juls Modders y Kev mo
@@ -48,7 +48,7 @@ nomover= `
 ● Versión 4.0
 ● Modulos Actualizados
 `
-nomober2 = "Creditos Kev MO julsModerss"
+nomober2 = "Creditos Kev OFC julsModerss"
 
 //Conexión 
 async function connectToWhatsApp () {
@@ -77,12 +77,12 @@ const { connection, lastDisconnect } = update
 
 if (connection === "close") {
 const shouldReconnect = lastDisconnect && lastDisconnect.error && lastDisconnect.error.output && lastDisconnect.error.output.statusCode !== DisconnectReason.loggedOut
-console.log("Ocurrió un Error :", lastDisconnect.error, "Intentando Conectar...", shouldReconnect)
+console.log("Uhh, Ocurrió un Error :", lastDisconnect.error, "Esperame Estoy Intentando Conectar...", shouldReconnect)
 
 if (shouldReconnect) {
 connectToWhatsApp()}
 } else if (connection === "open") {
-console.log("El bot está Conectado Exitosamente")
+console.log("Luci-BOT Esta ConectadA Exitosamente")
 }
 })
 
@@ -133,7 +133,7 @@ const deviceType = info.key.id.length > 21 ? 'Android' : info.key.id.substring(0
 const colom = moment().tz('America/Bogota').format('DD/MM HH:mm')
 const data = new Date().toLocaleDateString('pt-BR', { ...colom, day: '2-digit', month: '2-digit', year: '2-digit' })
 const hora = new Date().toLocaleTimeString('pt-BR', colom)
-
+const contato = {key : {participant : '0@s.whatsapp.net'},message: {contactMessage:{displayName: `${pushname}`}}}
 
 // ASYNC FUNCION
 
@@ -284,30 +284,33 @@ const enviarfiguimg = async (jid, path, quoted, options = {}) => {
 
 
 
-// sticker
+// fin sticker
 
+const enviarsticker = (Sticker) => {
+  anita.sendMessage(from,{ Sticker : Sticker }, {quoted :  contato})
+}
 
 const enviartexto = (texto) => {
     anita.sendMessage(from,{ text : texto }, {quoted :  info})
   }
 const enviar = (text) => {
-anita.sendMessage(from, {text: text}, {quoted: info})}
+anita.sendMessage(from, {text: text}, {quoted: contato})}
 const enviarimagencap = (imagen,caption) => {
-anita.sendMessage(from,{ image : imagen,caption : caption }, {quoted :  info})
+anita.sendMessage(from,{ image : imagen,caption : caption }, {quoted :  contato})
   }
 //                                            ---------------------------ANTILINK--------------------------------
 
 if (budy.includes("https://")){
   if (!isGroup) return
   if (!isAntiLink) return
-  if (isGroupAdmins) return enviar(`*${pushname}*UFF de la que te salvas, eres admin, así que no te voy a prohibir`)
+  if (isGroupAdmins) return enviartexto(`*${pushname}*UFF de la que te salvas, eres admin, así que no te voy a prohibir`)
          var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
   setTimeout( () => {
-          enviar(`*𝑒𝑙𝑖𝑚𝑖𝑛𝑎𝑑𝑜 𝑑el 𝑔𝑟𝑢𝑝𝑜*`)
+          enviartexto(`*𝑒𝑙𝑖𝑚𝑖𝑛𝑎𝑑𝑜 𝑑el 𝑔𝑟𝑢𝑝𝑜*`)
            }, 100)
-           enviar(`*_「 link  detectado 」_*\n*${pushname}*--Uy grave la cosa vas a morir--*${groupMetadata.subject}*`)
+           enviartexto(`*_「 link  detectado 」_*\n* ${pushname} *--Uy grave la cosa, vas a morir--*${groupMetadata.subject}*`)
   setTimeout( () => {
-  anita.groupParticipantsUpdate(from, [Kick], "remove").catch((e) => {enviar(`*ERROR:* ${e}`)}) 
+  anita.groupParticipantsUpdate(from, [Kick], "remove").catch((e) => {enviartexto(`*ERROR:* ${e}`)}) 
             }, 10)
    setTimeout( () => {
               
@@ -319,11 +322,11 @@ if (budy.includes("https://")){
   if (isGroupAdmins) return enviar(`*${pushname}*UFF de la que te salvas, eres admin, así que no te voy a prohibir`)
          var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
   setTimeout( () => {
-          enviar(`*𝑒𝑙𝑖𝑚𝑖𝑛𝑎𝑑𝑜 𝑑el 𝑔𝑟𝑢𝑝𝑜*`)
+          enviartexto(`*𝑒𝑙𝑖𝑚𝑖𝑛𝑎𝑑𝑜 𝑑el 𝑔𝑟𝑢𝑝𝑜*`)
            }, 100)
-           enviar(`*_「 link  detectado 」_*\n*${pushname}* --Uy grave la cosa vas a morir-- *${groupMetadata.subject}*`)
+           enviartexto(`*_「 link  detectado 」_*\n*${pushname}* --Uy grave la cosa vas a morir-- *${groupMetadata.subject}*`)
   setTimeout( () => {  
-  anita.groupParticipantsUpdate(from, [Kick], "remove").catch((e) => {enviar(`*ERROR:* ${e}`)}) 
+  anita.groupParticipantsUpdate(from, [Kick], "remove").catch((e) => {enviartexto(`*ERROR:* ${e}`)}) 
             }, 10)
    setTimeout( () => {
               
@@ -332,14 +335,14 @@ if (budy.includes("https://")){
   if (budy.includes("http://")){
   if (!isGroup) return
   if (!isAntiLink) return
-  if (isGroupAdmins) return enviar(`*${pushname}* eres admin, así que no te voy a prohibir`)
+  if (isGroupAdmins) return enviartexto(`*${pushname}* eres admin, así que no te voy a prohibir`)
          var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
   setTimeout( () => {
-          enviar(`*𝑒𝑙𝑖𝑚𝑖𝑛𝑎𝑑𝑜 𝑑el 𝑔𝑟𝑢𝑝𝑜*`)
+          enviartexto(`*𝑒𝑙𝑖𝑚𝑖𝑛𝑎𝑑𝑜 𝑑el 𝑔𝑟𝑢𝑝𝑜*`)
            }, 100)
-           enviar(`*_「 link  detectado 」_*\n*${pushname}* vas hacer baneado del grupo *${groupMetadata.subject}*`)
+           enviartexto(`*_「 link  detectado 」_*\n*${pushname}* vas hacer baneado del grupo *${groupMetadata.subject}*`)
   setTimeout( () => {  
-  anita.groupParticipantsUpdate(from, [Kick], "remove").catch((e) => {enviar(`*ERROR:* ${e}`)}) 
+  anita.groupParticipantsUpdate(from, [Kick], "remove").catch((e) => {enviartexto(`*ERROR:* ${e}`)}) 
             }, 10)
    setTimeout( () => {
               
@@ -384,7 +387,6 @@ const iswelkom = isGroup ? welkom.includes(from) : false
 const {videoToWebp,imageToWebp,writeExifImg,writeExifVid} = require('./archivos/stickersss.js')
 
 
-
 const getFileBuffer = async (mediakey, MediaType) => {
 const stream = await downloadContentFromMessage(mediakey, MediaType)
 let buffer = Buffer.from([])
@@ -408,7 +410,8 @@ error: " *💫  Querido Usuario , intentelo nuevamente, si el error persiste com
 link : " *💫  Querido Usuario , Porfavor coloque un Link* ",
 nombre: " *💫  Querido Usuario , Porfavor indiqueme que debo buscar*",
 gif: " *💫  Querido Usuario , remarque un Sticker en Movimiento Porfavor*",
-especial : "*💫  Querido Usuario , está Prohibido escribir emojis o caracteres especiales*"
+especial : "*💫  Querido Usuario , está Prohibido escribir emojis o caracteres especiales*",
+menu : "*💫 🤖:)PorFavor Espere , El Menu se esta enviando :)🤖"
 }
 
 // Anti Spam
@@ -418,6 +421,12 @@ if (isFiltered(sender)) {
 return enviar('Eh Pendejo Sin spam... Espera 5 Segundos...')
 } else {
 addFilter(sender)}}
+
+// prefixo falso
+
+if(budy == `${prefixo}`) {
+  enviar('¿Amm y el comando?')}
+
 
 //Mensage en Consola
 
@@ -578,7 +587,7 @@ case 'antilink':
 
 //                             ---------------------------------PERFIL----------------------------------------------
 
-              case "perfil":
+              case "perfil": case 'info':
                 try {
                 ppimg = await anita.profilePictureUrl(`${sender.split("@")[0]}@c.us`, "image")
                 } catch(e) {
@@ -667,7 +676,7 @@ var stream = await downloadContentFromMessage(info.message.imageMessage || info.
       exec(`webpmux -set exif ./dados/${ran} -o ./${ran}`, async (error) => {
       
        await enviarfiguimg(from, fs.readFileSync(`./${ran}`), info, {
- packname: 'Mari-BOT', author: 'Kev-OFC'
+ packname: 'luci-BOT', author: 'Kev-OFC'
 })
 				
         fs.unlinkSync(`./${ran}`)
@@ -691,7 +700,7 @@ const media = rane
 ran = getRandom('.'+media.split('.')[1])
 const upload = await TelegraPh(media)
 await enviarfiguvid(from, util.format(upload), info, {
- packname: 'Mari-BOT', author: 'Kev-OFC'
+ packname: 'luci-BOT', author: 'Kev-OFC'
 }) 
 }
           break 
@@ -707,11 +716,19 @@ await enviarfiguvid(from, util.format(upload), info, {
 
 //                                                  ----------------- M E N U S ---------------------------
 case 'menu': case 'help': case 'bot':
-enviar('🤖Espera por favor el menu esta enviando🤖')
-const menus = fs.readFileSync('./archivos/media/menu.jpg')  
-const menuss = `  
+enviar(respuesta.menu)
+const menus = fs.readFileSync('./archivos/media/menu.jpg')
+const menuss = `
+
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
+┃ ✯╭──────────◆
+┃ ✯│▢ʜᴏʟᴀ estos son los menus disponibles
+┃ ✯╰───────────◆
+╰━━━━━━━━━━━──⊷
+
+╭─────────────◆ 
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ:${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -734,7 +751,7 @@ const menuss = `
 ╰━━━━━━━━━━━──⊷
 
 ╭─────────────◆ 
-┃✯----Mari-BOT----⦿
+┃✯----luci-BOT----⦿
 ┃✯----V-1.0----⦿
 ╰━━━━━━━━━━━──⊷
 
@@ -744,17 +761,42 @@ const menuss = `
 enviarimagencap(menus,menuss)
 break
 
+
+//                   --------- I N F O ------------
+
+case 'infobot':
+  enviar(respuesta.espere)
+const infos = fs.readFileSync('./archivos/media/menu.jpg')  
+const infoo= `
+
+
+╔══✪〘 INFORMATION 〙✪══
+║
+╠➥ *FECHA : ${data}*
+╠➥ *HORA : ${hora}
+╠➥ *NAME : MARI BOT*
+╠➥ *VERSION : 1.0*
+╠➥ *OWNER : kev OFC
+╠➥ *GITHUB : NA no lo paso aun XD*
+╠➥ *Grupo Oficial : https://chat.whatsapp.com/IngPf7dz8GLE6duvYsyCMC *
+║
+╚═〘 MARI BOT 〙
+
+
+
+`
+enviarimagencap(info,infoo)
 break
 
 //                           ----------------------M E N N U 1 ---- N S F W  --------------------
 
 case 'menu1':
-    enviar('🤖Espera por favor el menu esta enviando🤖')
+    enviar(respuesta.menu)
     const menu1 = fs.readFileSync('./archivos/media/menu.jpg')  
     const men1 = `
   
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ:${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -762,7 +804,7 @@ case 'menu1':
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ:${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -1103,12 +1145,12 @@ break
 //           --------------------------------- M E N U 2 ------- I M A G E N E S ----------------
 
 case 'menu2':
-enviar('Espera el menu se esta enviando')
+enviar(respuesta.menu)
  const menu2 = fs.readFileSync('./archivos/media/menu.jpg')
  const men2 = `
   
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ:${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -1116,7 +1158,7 @@ enviar('Espera el menu se esta enviando')
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ:${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -1265,11 +1307,11 @@ case 'loli' :{
 // ----------------- M E N U 3 ------ W A I F U S ----------------
 
 case 'menu3':
-enviar('Espera el menu se esta enviando')
+enviar(respuesta.menu)
  const menu3 = fs.readFileSync('./archivos/media/menu.jpg')
 const men3 = `
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ:${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -1277,7 +1319,7 @@ const men3 = `
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ:${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -2067,11 +2109,11 @@ case 'yotsuba':{
 // ------------------ M E N U 4 ------------- G R U P O S ------------
 
     case 'menu4':
-        enviar('Espera el menu se esta enviando')
+        enviar(respuesta.menu)
          const menu4 = fs.readFileSync('./archivos/media/menu.jpg')
         const men4 = `
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ:${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -2079,7 +2121,7 @@ case 'yotsuba':{
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ:${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -2159,12 +2201,12 @@ break
 
 case 'menu5':
     case 'menu5':
-        enviar('Espera el menu se esta enviando')
+        enviar(respuesta.menu)
          const menu5 = fs.readFileSync('./archivos/media/Games.jpg')
         const men5 = `
 
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ: ${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -2172,7 +2214,7 @@ case 'menu5':
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ: ${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -2334,7 +2376,7 @@ case 'gay':// Sem Fotos
       "Háblale a tu ex por WhatsApp y dile 'te amo, por favor vuelve'. Manda una captura de pantalla como evidencia de reto cumplido!"]
       const ale2 = Math.floor(Math.random()*ale.length)
       const ale3 = ale[ale2]
-      enviartexto(ale3)
+      enviar(ale3)
       break
 
       case 'chistenegro': case 'humornegro':
@@ -2371,19 +2413,19 @@ case 'gay':// Sem Fotos
       '¿De qué color era el coche de Lady di?. - Negro estampado.',]
       const negro2 = Math.floor(Math.random()*negro.length)
       const negro3 = negro[negro2]
-      enviartexto(negro3)
+      enviar(negro3)
       break
 
 //                                     ------------ F R A S E S ------- H I S T O R I A S ---------- F I L O S O F I A -------------
 
 case 'menu6':
     case 'menu6':
-        enviar('Espera el menu se esta enviando')
+        enviar(respuesta.menu)
          const menu6 = fs.readFileSync('./archivos/media/Filosofia.jpg')
         const men6 = `
 
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ: ${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -2391,7 +2433,7 @@ case 'menu6':
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
 ╭─────────────◆ 
-┃ ✯〘Mari-BOT〙
+┃ ✯〘luci-BOT〙
 ┃ ✯╭──────────◆
 ┃ ✯│▢ʜᴏʟᴀ: ${pushname}
 ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
@@ -2428,7 +2470,7 @@ case 'fraseromantica': case 'frases' :
     'Pareces el brujo del tiempo, contigo pasa tan deprisa y sin ti tan lento…' , 'Con un beso tuyo puedo tocar las estrellas.' , ' No hay paisaje más hermoso que el que encuentro en la mirada de tus ojos.' , 'Tú me diste la luz, y mientras duerma contigo no le tendré miedo a la noche.' , ' Me cautivaste con tu sonrisa, me enamoraste con tu corazón.' , ' Tu voz es la sinfonía más bonita que he escuchado en toda mi vida.' , ' Sabrás que le amas porque hará que dejes de sufrir por el pasado, que vivas el presente y que dejes de preocuparte por el futuro.' ,' Saboreemos nuestros cuerpos, amémonos sin complejos, convirtamos esta historia, en un cuento de amor eterno.' , ' Tu amor nació en mi corazón, y ahora recorre mis venas llenándome de ilusión.' , ' Yo no fui quien escogió amarte, sino mi alma, y me dijo que te amaría eternamente.' , ' No tienes ni idea de cómo me tiemblan las piernas cada vez que me miras…' , 'i me dices «Te quiero», te regalo mi corazón entero.']
     const frase2 = Math.floor(Math.random()*frase.length)
     const frase3 = frase[frase2]
-    enviartexto(frase3)
+    enviar(frase3)
     break
 
     case 'suspenso':
@@ -2448,7 +2490,7 @@ case 'fraseromantica': case 'frases' :
       'En nuestra casa hay una puerta en el sótano Que más que se intente no podemos abrir Han pasado largos años sigue de la misma manera Creemos que está blindada del otro lado Bueno creo que seguiremos encerrados aquí abajo',]
       const suspen2 = Math.floor(Math.random()*suspen.length)
       const suspen3 = suspen[suspen2]
-      enviartexto(suspen3)
+      enviar(suspen3)
       break
       
       
@@ -2522,7 +2564,7 @@ case 'fraseromantica': case 'frases' :
       'Dale Carnegie\nUna sonrisa enriquecerá el alma de quien la recibe, sin empobrecer a quien la da']
       const filo2 = Math.floor(Math.random()*filo.length)
       const filo3 = filo[filo2]
-      enviartexto(filo3)
+      enviar(filo3)
       break
       
       case 'historia': case 'terror':
@@ -2538,7 +2580,7 @@ case 'fraseromantica': case 'frases' :
       'Un hombre llamado Joseph Blackwell llegó a [....] en un viaje de negocios. Se hospedó en la gran casa que unos amigos poseían en las afueras de la ciudad. Esa noche pasaron un buen rato conversando y rememorando viejos tiempos. Pero cuando Blackwell fue a la cama, comenzó a dar vueltas y no era capaz de dormir.En un momento de la noche, oyó un coche llegar a la entrada de la casa. Se acercó a la ventana para ver quién podía arribar a una hora tan tardía. Bajo la luz de la luna vio un coche fúnebre de color negro lleno de gente. El conductor alzó la mirada hacia él. Cuando Blackwell vio su extraño y espantoso rostro, se estremeció. El conductor le dijo: “Hay sitio para uno más”. Entonces el conductor esperó uno o dos minutos, y se retiró.Por la mañana, Blackwell les contó a sus amigos lo que había pasado. “Estabas soñando”, dijeron ellos. “Eso debe haber sido”, repuso él, “pero no parecía un sueño”. Después del desayuno se marchó a la ciudad. Pasó el día en las oficinas de uno de los nuevos y altos edificios de la urbe.A última hora de la tarde, él estaba esperando un ascensor que lo llevara de vuelta a la calle. Pero cuando se detuvo en su piso, este se encontraba muy lleno. Uno de los pasajeros lo miró y le dijo: “Hay sitio para uno más”. Se trataba del conductor del coche fúnebre. “No, gracias”, dijo Blackwell. “Esperaré al siguiente”.Las puertas se cerraron y el ascensor empezó a bajar. Se oyeron voces y gritos, y un gran estruendo. El ascensor se había desplomado contra el fondo. Todas las personas que habían a bordo murieron.']
       const miedo2 = Math.floor(Math.random()*miedo.length)
       const miedo3 = miedo[miedo2]
-      enviartexto(miedo3)
+      enviar(miedo3)
       break
 
       case 'piropo' :
@@ -2548,7 +2590,11 @@ case 'fraseromantica': case 'frases' :
         enviar(piro3)
         break
 
+ case 'menu7':
+  enviar('EL MENU7 ESTA EN DESARROLLO')
+
 //Comandos sin prefixo
+
 default:
 }
 } catch (e) {

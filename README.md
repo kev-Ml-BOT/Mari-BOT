@@ -1,2 +1,2 @@
-# Mari-BOT
+# luci-BOT
  
