@@ -142,6 +142,9 @@ const { text, extendedText, contact, location, liveLocation, image, video, stick
 const isAutoSt = isGroup ? autostick.includes(from) : false
 const isAdmin = groupAdmins.includes(sender) || false
 
+
+
+
 // ASYNC FUNCION
 
 anita.sendImageAsSticker = async (jid, path, quoted, options = {}) => {
@@ -190,8 +193,8 @@ return buffer
  } 
 
 //        ---------------- B I E N V E N I D A ---------------------------
-
-/*anita.ev.on('group-participants.update', async (anu) => {
+/*
+anita.ev.on('group-participants.update', async (anu) => {
   if(!welkom.includes(anu.id)) return 
   try{
     const datosgp = await anita.groupMetadata(anu.id)
@@ -313,6 +316,10 @@ const enviargifs = (gifs) => {
 
 const enviarsticker = (Sticker) => {
   anita.sendMessage(from,{ Sticker : Sticker }, {quoted :  contato})
+}
+
+const enviaraudios = (audios) => {
+  anita.sendMessage(from,{ audio : audios }, {quoted :  contato})
 }
 
 const enviartexto = (texto) => {
@@ -484,7 +491,25 @@ switch(comando) {
     enviar(respuesta.error)
     }
     break
+
+    case 'quitaradm':
+    if (!isGroup) return enviar(respuesta.grupo)
+    if (!isGroupAdmins) return enviar(respuesta.admin)
+    if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
+    if (q < 1) return enviar("🎭 ¿Dónde está el número? ")
+    if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
+    try{
+      anita.groupParticipantsUpdate(from, [`${q}@s.whatsapp.net`], "demote")
+      enviar(`🎭 Lastima  ${q} Ya no es admin `)
+      } catch(e) {
+      console.log(e)
+      enviar(respuesta.error)
+      }
+      break
+
     
+
+
     case 'tagall':
     case 'invocar':
     case 'hidetag':
@@ -527,6 +552,8 @@ switch(comando) {
         break
         
 // ---BAN Y ADD ---
+
+
 
 case 'agregar' :
     case 'add' : 
@@ -2230,6 +2257,17 @@ break
 // -------------- C A S E S ------- G R U P O S ----------
 
  //GRUPOS//
+ case 'setdesc':
+  if (!isGroup) return await enviar(respuesta.grupo)
+  if (!isGroupAdmins) return enviar(respuesta.admin)
+  if (!isBotGroupAdmins) return await enviar(respuesta.botadmin)
+  var newDesc = args.join(" ")
+  anita.groupUpdateDescription(from, newDesc).then(() => {
+    enviar('La Descripcion Se A Cambiado Con Exito')
+  })
+  break
+
+
  case "infogp":
     if (!isGroup) return enviar(respuesta.grupos)
     if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
@@ -2492,7 +2530,35 @@ case 'gay':// Sem Fotos
       'Tu novía me guiño un ojo el otro día +No, es que tiene un tick -Pues yo ya me la he follao',
       'Una niña le pregunta a su madre: ¿Me queda bien este vestido de bailarina?. Y la madre le contesta: Sí, pero se te ve un poco la silla de ruedas.',
       '- ¡Doctor, doctor! ¿Qué tal ha ido la operación? - ¿Operación, no era una autopsia?',
-      '¿De qué color era el coche de Lady di?. - Negro estampado.',]
+      '¿De qué color era el coche de Lady di?. - Negro estampado.',
+    'en que se parece una lechuga y un bebé? , en que los dos crujen',
+  '- Papá, papá. ¿Por qué adelantaste los regalos de Reyes para el verano?. , - Pero hijo mío, ¿tú crees que con el cáncer que tienes llegas a navidades?.',
+  'A mis familiares mayores les gustaba burlarse de mí en las bodas, diciendo que sería el siguiente. Pero dejaron de hacerlo cuando empecé a hacer lo mismo en los funerales',
+'Si alguna vez viera que ahorcan a un amputado, me pondría a gritarle letras.',
+  'Mi psicólogo acaba de morir, pero era tan bueno que ni siquiera me importa.',
+  'Mi abuelo decía que los jóvenes dependemos demasiado de la tecnología. Así que le desconecté de la máquina de respiración asistida.',
+  '¿Qué es cada vez mas pequeño cada vez más pequeño y al final rojo? Un niño peinándose con un pelador de patatas.',
+  '¿Cuál es el colmo de un leproso? Que se le caiga la cara de vergüenza.',
+  '¿Cuál es el colmo de la autodestrucción? Un leproso epliéptico.',
+  'El perro de mi novia murió y le compré uno idéntico. Se enfadó y me dijo: ¿qué voy a hacer con 2 perros muertos?',
+  'Estaba cavando un hoyo en nuestro jardín y encontré un cofre lleno de monedas de oro. Quería ir corriendo a casa a contárselo a mi marido. Entonces recordé por qué estaba cavando un hoyo en nuestro jardín.',
+  'Un hombre va a la biblioteca y pide un libro sobre cómo suicidarse. El bibliotecario le dice: no te lo dejo, que luego no lo devuelves.',
+  'Un viejo le pregunta al conductor del autobús: ¿El camino más rápido al cementerio? Póngase debajo de la rueda.',
+  'El humor negro es como los esclavos, hoy en día pocos tienen.',
+  '¿Qué tiene dos patas y sangra mucho? Medio perro.',
+  'Abuelita, cierra los ojos. ¿Por qué, hijo? Porque dice papá que cuando cierres los ojos seremos millonarios.',
+  'Si no tienes éxito a la primera, el puenting no es lo tuyo.',
+  '¿De qué murió Bob Marley? De un porrazo.',
+  'Quiero morir mientras duermo, como mi abuelo. No gritando, como los pasajeros de su avión.',
+  '¿Cómo mueren las estrellas? Por sobredosis.',
+  '¿Cuál es la diferencia entre Papá Noel y Ana Frank? La dirección en la que van en la chimenea.',
+  '¿Qué tienen en común un judío y una pelota? Que ninguno puede salir del campo.',
+  '¿Por qué la chica sin piernas no pudo entrar a Facebook? Porque no hizo la verificación en 2 pasos',
+  'Tengo 2 pelos, 3 ojos, 2 narices y un dedo. ¿Qué soy? Deforme.',
+  '¿Por qué Estados Unidos y Reino Unido no pueden jugar al ajedrez? Porque les faltan torres y la reina',
+  'Nunca le rompas el corazón a alguien, solo tienen uno. Rómpele los huesos mejor, tienen 206.',
+   'Si donas un riñón, todo el mundo te quiere y eres un héroe. Pero dona cinco y de repente todo el mundo se pone a gritar.',
+   'Si tuviera diez centavos por cada vez que un indigente me ha pedido dinero, seguiría diciendo que no',]
       const negro2 = Math.floor(Math.random()*negro.length)
       const negro3 = negro[negro2]
       enviar(negro3)
@@ -2675,8 +2741,16 @@ case 'fraseromantica': case 'frases' :
  case 'menu7':
   enviar('EL MENU7 ESTA EN DESARROLLO')
 
+  case 'yamete':
+    enviar(respuesta.espere)
+  const au = fs.readFileSync('./archivos/media/audios/Yamete-kudasai.mp3')
+  enviaraudios(au)
+break
 
-        break
+
+  
+
+
 
         case 'autostick':            
 if (!isGroup) return enviar(respuesta.grupo)
@@ -2716,6 +2790,13 @@ var imageBuffer = new Buffer.from(mantap, 'base64');
 anita.sendMessage(from, imageBuffer, sticker, {quoted: contato})
 addFilter(from)
 break
+
+
+
+
+
+
+
 
 //Comandos sin prefixo
 
