@@ -2518,35 +2518,35 @@ break
 // ------------------- C A S E S ---- D E ---- J U E G O S ------------
 
 case 'gay':// Sem Fotos
-  const aleta = `${Math.floor(Math.random() * 105)}`
+  const aleta = `${Math.floor(Math.random() * 115)}`
   enviar('Aguarde, confirmando su porcentaje...')
   await delay(5000)
   enviar(`${pushname} Su Porcentage de gay es de : ${aleta}%`)
   break
   
   case 'lindo':
-  const aletc = `${Math.floor(Math.random() * 105)}`
+  const aletc = `${Math.floor(Math.random() * 115)}`
   enviar('Aguarde, confirmando su porcentaje...')
   await delay(5000)
   enviar(`${pushname} Su porcentaje de lindo(a) es de  : ${aletc}%`)
   break
   
   case 'feura': // Sem Fotos
-  const aletb = `${Math.floor(Math.random() * 105)}`
+  const aletb = `${Math.floor(Math.random() * 115)}`
   enviar('Aguarde, confirmando su porcentaje...')
   await delay(5000)
   enviar(`${pushname} Su porcentaje de feo(a)es de : ${aletb}%`)
   break
   
   case 'delicia':
-  const aletd = `${Math.floor(Math.random() * 105)}`
+  const aletd = `${Math.floor(Math.random() * 115)}`
   enviar('Aguarde, confirmando su porcentaje...')
   await delay(5000)
   enviar(`${pushname} Su porcentaje de delicioso(a) es de  : ${aletd}%`)
   break
   
   case 'pendejo':
-  const aletz = `${Math.floor(Math.random() * 105)}`
+  const aletz = `${Math.floor(Math.random() * 115)}`
   enviar('Aguarde, confirmando su porcentaje...')
   await delay(5000)
   enviar(`${pushname} Su porcentaje de pendejo(a) es de  : ${aletz}%`)
@@ -2554,10 +2554,18 @@ case 'gay':// Sem Fotos
   
   case 'puta':
   case 'puto':
-  const aletq = `${Math.floor(Math.random() * 105)}`
+  const aletq = `${Math.floor(Math.random() * 115)}`
   enviar('Aguarde, confirmando su porcentaje...')
   await delay(5000)
   enviar(`${pushname} Su porcentaje de puto(@) es de  : ${aletq}%`)
+  break
+
+  case 'hetero':
+  case 'heter':
+  const aleth = `${Math.floor(Math.random() * 115)}`
+  enviar('Aguarde, confirmando su porcentaje...')
+  await delay(5000)
+  enviar(`${pushname} Su porcentaje de hetero es de  : ${aleth}%`)
   break
 
   case 'retos':
