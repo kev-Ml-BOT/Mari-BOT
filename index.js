@@ -4,6 +4,9 @@
 
 // MODULOS 
 const {default: makeWASocket, makeInMemoryStore, useMultiFileAuthState, delay, downloadContentFromMessage, DisconnectReason, templateMessage, MediaType, GroupSettingChange, isBaileys, WASocket, WAProto, getStream, relayWAMessage, Miimetype, proto, mentionedJid, processTime, MessageTypeProto, BufferJSON, GroupMetadata, getContentType} = require("@adiwajshing/baileys")
+const {
+  presence
+} = require("@adiwajshing/baileys")
 
 const P = require("pino")
 const fs = require("fs")
@@ -105,7 +108,50 @@ const budy = (type === 'conversation') ? info.message.conversation : (type === '
 
 var pes = (type === 'conversation' && info.message.conversation) ? info.message.conversation : (type == 'imageMessage') && info.message.imageMessage.caption ? info.message.imageMessage.caption : (type == 'videoMessage') && info.message.videoMessage.caption ? info.message.videoMessage.caption : (type == 'extendedTextMessage') && info.message.extendedTextMessage.text ? info.message.extendedTextMessage.text : ''
 
+/*
+// BIENVENIDA
+anita.ev.on('group-participants.update', async (anu) => {
+  if(!welkom.includes(anu.id)) return 
+  try{
+    const datosgp = await anita.groupMetadata(anu.id)
+
+    if(anu.action == 'add') {
+
+      const numerodep = anu.participants[0]
+
+      const fotito = fs.readFileSync('./archivos/Bienvenida.jpg')
+
+      const Bienvenida = `
+      ╭━〘𝓐𝓝𝓘𝓣𝓐-𝓑𝓞𝓣𝐎𝐓〙\n┃  ⛥╭──────────────\n๖ۣۜۜ͜͡𝐇𝐨𝐥𝐚ঔৣֳ᷌᷈͜͡ ${numerodep}\n💖 𝙱𝙸𝙴𝙽𝚅𝙴𝙽𝙸𝙳@\n┃ ⛥│🤴ᩭ✎𝙽Ú𝙼𝙴𝚁𝙾 𝙳𝙴 𝙼𝙸 𝙲𝚁𝙴𝙰𝙳𝙾𝚁\n┃ ⛥│📔ᩭ✎http://wa.me/573001382233\n┃ ⛥│📚ᩭ✎𝙴𝙽 𝙴𝚂𝚃𝙴 𝙶𝚁𝚄𝙿𝙾 𝙿𝚄𝙴𝙳𝙴𝚂 𝙴𝙽𝙲𝙾𝙽𝚃𝚁𝙰𝚁\n┃ ⛥│🍀ᩭ✎𝙰𝙼𝙸𝚂𝚃𝙰𝙳𝙴𝚂\n┃ ⛥│🤝ᩭ✎𝙰𝙼𝙸𝙶𝙾𝚂\n┃ ⛥│❤️📚ᩭ✎𝙳𝙴𝚂𝙼𝙰𝙳𝚁𝙴┃ ⛥│◦➛😇ᩭ✎𝙲𝙾𝚃𝙾𝚁𝚁𝙴𝙾 𝚈 𝙼Á𝚂\n┃ ⛥│⁉️ᩭ✎𝙰𝚅𝙸𝚂𝙾 𝙸𝙼𝙿𝙾𝚁𝚃𝙰𝙽𝚃𝙴:\n𝙿𝚘𝚛 𝚏𝚊𝚟𝚘𝚛 𝙻𝚎𝚎 𝚕𝚊𝚜 𝚛𝚎𝚐𝚕𝚊𝚜 𝚍𝚎𝚕 𝚐𝚛𝚞𝚙𝚘 𝚙𝚊𝚛𝚊 𝚚𝚞𝚎 𝚎𝚟𝚒𝚝𝚎𝚜 𝚜𝚎𝚛 𝚎𝚕𝚒𝚖𝚒𝚗𝚊𝚍𝚘 𝚢 𝚎𝚟𝚒𝚝𝚎𝚜 𝚝𝚎𝚗𝚎𝚛 𝚙𝚛𝚘𝚋𝚕𝚎𝚖𝚊𝚜 𝚌𝚘𝚗 𝚌𝚛𝚎𝚊𝚍𝚘𝚛 𝚍𝚎𝚕 𝚐𝚛𝚞o\n┃ ⛥│\n┃ ⛥│◦➛🌱OF-KEV𝐈\n┃ ⛥╰───────────\n╰━━━━━━━━━━━──⊷'
+
+      ${numerodep}
+
+      `
+      anita.sendMessage(anu.id,{image : fotito, caption : Bienvenida})
+     }
+
+     if(anu.action == 'remove') {
+
+      const numerodep = anu.participants[0]
+
+      const fotito2 = fs.readFileSync('./archivos/Despedida.jpg')
+
+      const Despedida = `
+     
+       ╭━〘𝓐𝓝𝓘𝓣𝓐-𝓑𝓞𝓣𝐎𝐓〙\n┃ ⛥╭──────────────\n${numerodep}\n𝐒𝐚𝐥𝐢ó 𝐝𝐞𝐥 𝐠𝐫𝐮𝐩𝐨 𝐧𝐢 𝐦𝐨𝐝𝐨 𝐪𝐮𝐞 𝐭𝐞 𝐯𝐚𝐲𝐚 𝐛𝐢𝐞𝐧 𝐇𝐚𝐬𝐭𝐚 𝐥𝐚 𝐩𝐫ó𝐱𝐢𝐦𝐚 𝐪𝐮𝐞 𝐃𝐢𝐨𝐬 𝐭𝐞 𝐛𝐞𝐧𝐝𝐢𝐠𝐚\n┃ ⛥│🌱OF-KEV𝐈☘\n┃ ⛥╰───────────\n╰━━━━━━━━━━━──⊷'
+      `
+      anita.sendMessage(anu.id,{image : fotito2, caption : Despedida})
+    }
+
+ } catch(e) {
+  console.log('Error: % s', color("red"))
+ }
+})
+
+*/
+
 // Constantes Creadas Por Juls y kev
+
 
 const isGroup = info.key.remoteJid.endsWith('@g.us')
 const sender = isGroup ? info.key.participant : info.key.remoteJid
@@ -130,6 +176,7 @@ const pushname = info.pushName ? info.pushName : ''
 const isBot = info.key.fromMe ? true : false
 const isOwner = numerodono.includes(sender)
 const BotNumber = anita.user.id.split(':')[0]+'@s.whatsapp.net'
+const isMe = BotNumber.includes(sender)
 const isGroupAdmins = groupAdmins.includes(sender) || false 
 const isBotGroupAdmins = groupAdmins.includes(BotNumber) || false
 const isUrl = (url) => { return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi')) }
@@ -141,9 +188,67 @@ const contato = {key : {participant : '0@s.whatsapp.net'},message: {contactMessa
 const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = mimeTypes
 const isAutoSt = isGroup ? autostick.includes(from) : false
 const isAdmin = groupAdmins.includes(sender) || false
+/*
+const sendMediaURL = async(to, url, text="", mids=[]) =>{
+  if(mids.length > 0){
+      text = normalizeMention(to, text, mids)
+  }
+  const fn = Date.now() / 10000;
+  const filename = fn.toString()
+  let mime = ""
+  var download = function (uri, filename, callback) {
+      request.head(uri, function (err, res, body) {
+          mime = res.headers['content-type']
+          request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+      });
+  };
+  download(url, filename, async function () {
+      console.log('done');
+      let media = fs.readFileSync(filename)
+      let type = mime.split("/")[0]+"Message"
+      if(mime === "image/gif"){
+          type = MessageType.video
+          mime = Mimetype.gif
+      }
+      if(mime.split("/")[0] === "audio"){
+          mime = Mimetype.mp4Audio
+      }
+      turbo.sendMessage(to, media, type, { quoted: mek, mimetype: mime, caption: text,contextInfo: {"mentionedJid": mids}})
+      
+      fs.unlinkSync(filename)
+  });
+}   
 
 
 
+const fakegroup = (teks) => {
+  turbo.sendMessage(from, teks, text, {
+      quoted: {
+          key: {
+              fromMe: false,
+              participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "6289523258649-1604595598@g.us" } : {})
+          },
+          message: {
+              "imageMessage": {
+                  "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc",
+                  "mimetype": "image/jpeg",
+                  "caption": `${pushname}`,
+                  "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=",
+                  "fileLength": "28777",
+                  "height": 1080,
+                  "width": 1079,
+                  "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=",
+                  "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=",
+                  "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69",
+                  "mediaKeyTimestamp": "1610993486",
+                  "jpegThumbnail": fs.readFileSync('./stik/thumb.jpeg'),
+                  "scansSidecar": "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw=="
+              }
+          }
+      }
+  })
+}
+*/
 
 // ASYNC FUNCION
 
@@ -191,9 +296,8 @@ anita.downloadMediaMessage = async (message) => {
     
 return buffer
  } 
-
-//        ---------------- B I E N V E N I D A ---------------------------
 /*
+//        ---------------- B I E N V E N I D A ---------------------------
 anita.ev.on('group-participants.update', async (anu) => {
   if(!welkom.includes(anu.id)) return 
   try{
@@ -231,10 +335,10 @@ anita.ev.on('group-participants.update', async (anu) => {
       console.log('Error: % s', color("red"))
      }
     })
-
+*/
 // ----------------------- FIN BIENVENIDA -------------------
 
-*/
+
 
 
 
@@ -419,6 +523,7 @@ const iswelkom = isGroup ? welkom.includes(from) : false
 const {videoToWebp,imageToWebp,writeExifImg,writeExifVid} = require('./archivos/stickersss.js')
 
 
+
 const getFileBuffer = async (mediakey, MediaType) => {
 const stream = await downloadContentFromMessage(mediakey, MediaType)
 let buffer = Buffer.from([])
@@ -476,6 +581,21 @@ if (isGroup && isGroup) console.log(`${color('┏━━━━━━━━━┅�
 switch(comando) {
 
 
+  case  'listadmins':
+    case 'listadmin':
+    case 'adminlist':
+    case  'adminslist':
+      if (!isGroup) return enviar(respuesta-grupo)
+      if (!isAdmin) return enviar(respuesta.admin)
+      teks = `Lista de facheritos *${groupMetadata.subject}*\nTotal : ${groupAdmins.length}\n\n`
+      no = 0
+      for (let admon of groupAdmins) {
+        no += 1
+        teks += `[${no.toString()}] @${admon.split('@')[0]}\n`
+      }
+      mentions(teks, groupAdmins, true)
+      break
+
 
     case "promover":
     if (!isGroup) return enviar(respuesta.grupo)
@@ -517,17 +637,6 @@ switch(comando) {
     if (!isGroupAdmins) return enviar(respuesta.admin)
     if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
     members_id = []
-    const mentions = (teks, memberr, id) => {
-    (id == null || id == undefined || id == false) ? anita.sendMessage(from, {
-    text: '@12345678901', contextInfo: {
-    "mentionedJid": memberr
-    }}): anita.sendMessage(from, {
-    text: teks.trim(), contextInfo: {
-    "mentionedJid": memberr
-    }}, {
-    quoted: info
-    })
-    }
     teks = `\n\n${args.length > 0 ? `\n ➣ [${q}]\n\n`: ''}$\n`
     for (let mem of groupMembers) {
     teks += `♧ @${mem.id.split('@')[0]}\n`
@@ -583,31 +692,30 @@ case 'agregar' :
           case 'bienvenida': 
           enviar('*HOLA QUERIDO USUARIO DEVIDO A UN ERROR EL COMANDO WELCOME(BIENVENIDA) ESTA SIN FUNCIONAR, GRACIAS POR SU ATENCION..*')
           /*if(!isGroup) return enviar(respuesta.grupos)
-          if(args.length<1 ) return 
-          enviar('👀✍ESCRIBA 1 PARA ACTIVAR Y 0 PARA DESACTIVAR')
-          if(!isGroupAdmins) return enviar ('✨😎𝕝𝕠 𝕤𝕚𝕖𝕟𝕥𝕠 𝕞𝕚 𝕜𝕚𝕟𝕘 , 𝕟𝕠 𝕖𝕣𝕖𝕤 𝕦𝕟 𝕒𝕕𝕞𝕚𝕟𝕚𝕤𝕥𝕣𝕒𝕕𝕠𝕣 𝕕𝕖 𝕝𝕠𝕤 𝔾𝕆𝔻𝕊😎✨')
-          if(!isBotGroupAdmins) return enviar(respuesta.botadmin)
-          if(Number(args[0])==1) {
-            if(iswelkom) return enviar('𝕄𝕀 𝕂𝕀ℕ𝔾 , 𝕐𝔸 𝔼𝕊𝕋𝔸 𝔸ℂ𝕋𝕀𝕍𝕆')
-            welkom.push(from)
-            fs.writeFileSync('./archivos/welkom.json',JSON.stringify(welkom)) ; return enviar('𝔸ℂ𝕋𝕀𝕍𝔸𝔻𝕆 ℂ𝕆ℝℝ𝔼ℂ𝕋𝔸𝕄𝔼ℕ𝕋𝔼')
-          } else if (Number(args[0]==0)) {
-            if(!iswelkom) return enviar('ℕ𝕆 𝔼𝕊𝕋𝔸 𝔸ℂ𝕋𝕀𝕍𝔸𝔻𝕆')
-            const elsy = from 
-            const processo = welkom.indexOF(elsy)
-            while(processo>=0) {
-              welkom.splice(processo, 1)
-              processo = welkom.indexOF(elsy)
-            }
-            fs.writeFileSync('./archivos/welkom.json',Json.stringify(welkom))
-            enviar('𝔻𝔼𝕊𝔸ℂ𝕋𝕀𝕍𝔸𝔻𝕆 ℂ𝕆ℝℝ𝔼ℂ𝕋𝔸𝕄𝔼ℕ𝕋𝔼')
-          } else {
-            enviar('1 para activar y 0 para desactivar')
+        if(args.length<1 ) return 
+        enviar('👀✍ESCRIBA 1 PARA ACTIVAR Y 0 PARA DESACTIVAR')
+        if(!isGroupAdmins) return enviar ('✨😎𝕝𝕠 𝕤𝕚𝕖𝕟𝕥𝕠 𝕞𝕚 𝕜𝕚𝕟𝕘 , 𝕟𝕠 𝕖𝕣𝕖𝕤 𝕦𝕟 𝕒𝕕𝕞𝕚𝕟𝕚𝕤𝕥𝕣𝕒𝕕𝕠𝕣 𝕕𝕖 𝕝𝕠𝕤 𝔾𝕆𝔻𝕊😎✨')
+        if(!isBotGroupAdmins) return enviar(respuesta.botadmin)
+        if(Number(args[0])==1) {
+          if(iswelkom) return enviar('𝕄𝕀 𝕂𝕀ℕ𝔾 , 𝕐𝔸 𝔼𝕊𝕋𝔸 𝔸ℂ𝕋𝕀𝕍𝕆')
+          welkom.push(from)
+          fs.writeFileSync('./archivos/welkom.json',JSON.stringify(welkom)) ; return enviar('𝔸ℂ𝕋𝕀𝕍𝔸𝔻𝕆 ℂ𝕆ℝℝ𝔼ℂ𝕋𝔸𝕄𝔼ℕ𝕋𝔼')
+        } else if (Number(args[0]==0)) {
+          if(!iswelkom) return enviar('ℕ𝕆 𝔼𝕊𝕋𝔸 𝔸ℂ𝕋𝕀𝕍𝔸𝔻𝕆')
+          const elsy = from 
+          const processo = welkom.indexOF(elsy)
+          while(processo>=0) {
+            welkom.splice(processo, 1)
+            processo = welkom.indexOF(elsy)
           }
-          break
-*/
+          fs.writeFileSync('./archivos/welkom.json',Json.stringify(welkom))
+          enviar('𝔻𝔼𝕊𝔸ℂ𝕋𝕀𝕍𝔸𝔻𝕆 ℂ𝕆ℝℝ𝔼ℂ𝕋𝔸𝕄𝔼ℕ𝕋𝔼')
+        } else {
+          enviar('1 para activar y 0 para desactivar')
+        }
+        break
 
-          
+          */
 
 // Crea tus comandos Aqui
 case "hola":
@@ -2237,6 +2345,9 @@ case 'yotsuba':{
 ┃ ✯│${prefixo} antilink (1 activar 0 desactivar)
 ┃ ✯│${prefixo} ban (ejemplo: @kev)
 ┃ ✯│${prefixo} promover @
+┃ ✯│${prefixo} quitaradm
+┃ ✯│${prefixo} listadmin
+┃ ✯│${prefixo} setdesc
 ┃ ✯│${prefixo} welcome 
 ┃ ✯│${prefixo} add   (numero)
 ┃ ✯│${prefixo} hidetag , invocar ,tagall (le puedes agregar el mensaje que quieras)
@@ -2286,7 +2397,7 @@ break
     break
 
     case "gplink":
-if (!isGroup) return enviar(respuesta.grupos)
+if (!isGroup) return enviar(respuesta.grupo)
 if (!isGroupAdmins) return enviar(respuesta.admin)
 if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
 const link = await anita.groupInviteCode(from)
@@ -2294,7 +2405,7 @@ enviar(`🎭 Link de grupo : https://chat.whatsapp.com/${link} `)
 break
 
 case "resetlink":
-if (!isGroup) return enviar(respuesta.grupos)
+if (!isGroup) return enviar(respuesta.grupo)
 if (!isGroupAdmins) return enviar(respuesta.admin)
 if (!isBotGroupAdmins) return enviar(respuesta.botadmin)
 try {
@@ -2306,17 +2417,57 @@ enviar(respuesta.erro)
 }
 break
 
-
+/*
 case 'adminlist':
-  if (!isGroup) return enviar(from, 'admins del grupo!', id)
+  if (!isGroup) return enviar(from, 'admins del grupo!')
   let mimin = ''
   for (let admon of groupAdmins) {
       mimin += `➸ @${admon.split(/@c.us/g, '')}\n` 
   }
   await anita.sendMessage(from, mimin)
-  break
+  break*/
+/*
+  case 'adminlist':
+    if (!isGroup) return enviar(respuesta.grupo)
+    let mimi = ''
+    for (let admon of groupAdmins) {
+      mimi   `➸ @${admon.split(/@c.us/g, '')}\n` 
+    }
+    await anita.sendMessage(mimi)
+    break*/
 
 
+    case 'listonline':
+      let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
+      let online = [...Object.keys(anita.chats.get(ido).presences), anita.user.jid]
+      anita.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join`\n`, text, { quoted: info,
+      contextInfo: { mentionedJid: online }
+      })
+      break
+
+      case 'd':
+        if (!isGroup)return reply(respuesta.grupo)
+        try {
+        anita.deleteMessage(from, {
+        id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true
+        })
+        } catch {
+        enviar('Solo puedo borrar mensajes míos')
+        }
+        break
+
+
+        case 'twitter':
+          if (!isUrl(args[0]) && !args[0].includes('twitter.com')) return enviar(respuesta.espere)
+          if (!q) return fakegroup('y el link?')
+          ten = args[0]
+          var res = await twitterGetUrl(`${ten}`)
+          .then(g => {
+          ren = `${g.download[2].url}`
+          sendMediaURL(from,ren,'DONE')
+          })
+          break
+  
 //                 -------------------- J U E G O S -----------------
 
 case 'menu5':
@@ -2600,6 +2751,7 @@ case 'menu6':
 ┃ ✯│${prefixo} historia o terror
 ┃ ✯│${prefixo} suspenso
 ┃ ✯│${prefixo} filosofia 
+┃ ✯│${prefixo} narcisista
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
 ╭─────────────◆ 
@@ -2731,6 +2883,61 @@ case 'fraseromantica': case 'frases' :
       enviar(miedo3)
       break
 
+      case 'narcisista': case 'nar':
+        const nar = ['Si esta noche sueñas conmigo, es probable que duermas muy bien.',
+        'Solo tienes que mirarme para darte cuenta de lo que es la perfección.',
+        'Solo hay dos verdades en esta conversación: la que pienso y la que digo.',
+        'Después de Google, Yo.',
+        'Acéptalo, soy un lujo que no te puedes permitir.',
+        'El egoísmo no es el amor propio, sino una pasión desordenada por uno mismo.',
+        'Solo en el momento en que se supere el ego se puede iniciar un proceso de desarrollo integral.',
+        'El posmodernismo no es más que un grado suplementario en la escala de la personalización del individuo dedicado al self-service narcisista y a combinaciones caleidoscópicas indiferentes.',
+        'Tu felicidad solo puede describirse en una palabra: Yo.',
+        'Nací para llenar de belleza a un corazón tan feo como el tuyo.',
+        'Ser guapo como YO es cuestión divina…. no lo intentes.',
+        'Si Dios pensara como Yo… No existirías.',
+        'El Universo, el Sistema Solar, nuestro Mundo, él, ella, tú… dejaréis de existir cuando YO muera.',
+        'Si no me interesa, no existe.',
+        'Cada vez que me miro al espejo me doy cuenta de la maravilla que hizo mi madre.',
+        'Quererme es fácil, olvidarme imposible.',
+        'Solo hay 2 clases de personas: las que aman, y las que no me conocen.',
+         'Mi complejo de superioridad es mejor que el tuyo…',
+        'Me gustaría que te dieras la oportunidad de conocerme.',
+        'La autoperfección es simple masturbación',
+        'Yo no adoro trozos de piedra, como vosotros estúpidos. No tengo ningún respeto por la religión. Yo sólo me adoro a mí mismo. Y vosotros también debeis adorarme. Porque yo soy Dios. Yo decido si vivir o morir.',
+        'La timidez tiene un extraño componente de narcicismo: la creencia de que a los demás realmente les importa nuestra forma de vestir o nuestra forma de actuar.',
+        'Si me regalaran otra vida, volvería a ser yo.',
+        'Me pregunto: ¿Qué sería del mundo sin mí?',
+        'Unos desean el talento, otros nos encargamos de hacerlo realidad.',
+        'Todos se ríen de que soy diferente… yo me rió de que vosotros sois iguales.',
+        'Tú me envidias porque yo soy sol y tu luna yo brillo con luz propia tu te iluminas con la mía.',
+        'La mayoría de la gente está enamorada de su drama personal. Su historia personal es su identidad. El ego dirige su vida. Todo su sentido de identidad está invertido en él. Incluso su búsqueda de una respuesta —generalmente sin éxito—, de una solución o de la sanación se convierte en parte del drama.',
+        'Soy egocéntrico, y me llaman Sol.',
+        'Ojalá fuese tú… para poder mirarme…',
+        'ESTOY VIENDO A DIOS EN EL ESPEJO!!!..Ah no, soy yo … perdón.',
+        'No soy ni mejor ni peor. Soy como soy… y en eso nadie me gana.',
+        'El otro día me puse a dibujar un corazón. Sin querer escribí: Yo soy el mejor.',
+        'La persona indicada siempre va a creer que el Sol sale detrás de tu culo.',
+        'El autor que habla de sus propios libros es peor que la madre que sólo habla de sus hijos.',
+        'Tu ego extiende cheques que tu cuerpo no puede canjear.',
+        'Todos los días amanezco guapo… pero hoy estoy exageradamente perfecto.',
+        'Yo me llevo solo bien conmigo…Yo del mundo soy el ombligo…De mi vida yo hablo mucho…Y cuando me hablan yo nunca escucho.',
+        'El tío está enamorado de sí mismo. Probablemente se masturba mientras lame su reflejo.',
+        'Ojalá pudieras mirarme cómo lo hago yo conmigo mismo.',
+        'Los psicoanalistas explotan el narcisismo, en particular el concreto deseo de que alguien ajeno se ocupe de nuestros problemas personales.',
+        'Esto es clave para entender el mito de la timidez masculina. Pues, aunque crees que te está halagando, en realidad, se halaga a sí mismo mostrando lo abierto, sensible y sincero que es.',
+        'Con frecuencia un escritor consciente crea, sin quererlo, a sus héroes a su propia semejanza.',
+        'Todo el mundo dice que soy superior a Dios. Es mentira, somos iguales.',
+        'A veces es un poco difícil ser el único centro de envidia del pueblo.',
+        'Sueña con angelitos, y mañana me cuentas qué tal me quedan las alas.']
+        const nar1 = Math.floor(Math.random()*nar.length)
+        const nar2 = nar[nar1]
+        enviar(nar2)
+        break
+
+
+
+
       case 'piropo' :
         const piro = ['Me gustaría ser papel para poder envolver ese bombón.' , 'Eres como wifi sin contraseña, todo el mundo te busca' , 'Quién fuera bus para andar por las curvas de tu corazón.' , 'Quiero volar sin alas y salir de este universo, entrar en el tuyo y amarte en silencio.' , 'Quisiera ser mantequilla para derretirme en tu arepa.' , 'Si la belleza fuera pecado vos ya estarías en el infierno.' , 'Me Gustaría Ser Un Gato Para Pasar 7 Vidas A Tu Lado.' , 'Robar Está Mal Pero Un Beso De Tu Boca Sí Me Lo Robaría.' , 'Qué Hermoso Es El Cielo Cuando Está Claro Pero Más Hermoso Es El Amor Cuando Te Tengo A Mi Lado.' , 'Bonita, Camina Por La Sombra, El Sol Derrite Los Chocolates.' , 'Si Fuera Un Correo Electrónico Serías Mi Contraseña.' , 'Quisiera que fueses monte para darte machete' , 'Perdí mi número de teléfono ¿Me das el tuyo?' , '¿Cómo te llamas para pedirte de regalo a Santa Claus?' , ' En el cielo hay muchas estrellas, pero la más brillante está en la Tierra y eres tú.' , '¿Acaba de salir el sol o es la sonrisa que me regalas hoy?' , 'No es el ron ni la cerveza, eres tú quien se me ha subido a la cabeza' , 'Si hablamos de matemáticas eres la suma de todos mis deseos.' , 'Pareces Google porque tienes todo lo que yo busco.' , 'Mi café favorito, es el de tus ojos.' , 'Quiero ser photoshop para retocarte todo el cuerpo.' , 'Quisiera que fueras cereal, para cucharearte en las mañanas.' , 'Quien fuera hambre, para darte tres veces al día.',]
         const piro2 = Math.floor(Math.random()*piro.length)
@@ -2740,7 +2947,7 @@ case 'fraseromantica': case 'frases' :
 
  case 'menu7':
   enviar('EL MENU7 ESTA EN DESARROLLO')
-
+break
   case 'yamete':
     enviar(respuesta.espere)
   const au = fs.readFileSync('./archivos/media/audios/Yamete-kudasai.mp3')
@@ -2791,17 +2998,44 @@ anita.sendMessage(from, imageBuffer, sticker, {quoted: contato})
 addFilter(from)
 break
 
+// --------------- LU CI ----------
 
+case 'luci': case 'Luci':
+  const luci = ['holaa', 'hello','Que pasa'] 
+  const luci1 = Math.floor(Math.random()*luci.length)
+  const luci2 = luci[luci1]
+  enviar(luci2)
+  break
 
+  case 'lucipasaporno':
+    const lucipo = ['Naaa', 'Pasa tu', '¿Quieres Ban?','Uy Eso es del DIABLOOOO' ] 
+    const lucipo1 = Math.floor(Math.random()*lucipo.length)
+    const lucipo2 = lucipo[lucipo1]
+    enviar(lucipo2)
+    break
 
+    case 'lucilinda':
+      const lucili = ['Ay Gracias','Se te Quiere','¿Me amas?','¿Me amas, Por que yo si'] 
+      const lucili1 = Math.floor(Math.random()*lucili.length)
+      const lucili2 = lucili[lucili1]
+      enviar(lucili2)
+      break
 
-
+// actualizacion
+case 'newupdate':
+enviar('*Hola Querido usuario Estos son los nuevos comandos no es ACTUALIZACIÓN general*\n\n*ACTUALIZACIÓN GENERAL SE RETRASA DEVIDO A UN ERROR DE APIS*\n\n Se agregaron..\n\n */setdc (cambia la descripción del grupo)*\n*/listadmin (lista de los admins)*\n*/nar o tambien /narcisista*')
+break
 
 
 //Comandos sin prefixo
 
 default:
-}
+
+
+
+
+
+ }
 } catch (e) {
 e = String(e)
 if (!e.includes("this.isZero") && !e.includes("Could not find MIME for Buffer <null>") && !e.includes("Cannot read property 'conversation' of null") && !e.includes("Cannot read property 'contextInfo' of undefined") && !e.includes("Cannot set property 'mtype' of undefined") && !e.includes("jid is not defined")) {
