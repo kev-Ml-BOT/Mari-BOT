@@ -2562,7 +2562,7 @@ case 'gay':// Sem Fotos
 
   case 'hetero':
   case 'heter':
-  const aleth = `${Math.floor(Math.random() * 115)}`
+  const aleth = `${Math.floor(Math.random() * 200)}`
   enviar('Aguarde, confirmando su porcentaje...')
   await delay(5000)
   enviar(`${pushname} Su porcentaje de hetero es de  : ${aleth}%`)
