@@ -40,7 +40,7 @@ const { everyLimit } = require("async")
 const { env } = require("process")
 // CONSTANTES CREADAS
 
-prefixo = "/" // Cambiar Prefijo
+prefixo = "" // Cambiar Prefijo
 nomebot = "luci Bot" // Cambiar nombre del Bot
 vers = "1.0"
 
@@ -53,11 +53,10 @@ nomedono = "Kev OFC" // No cambiar
 numerodono = "+573136462636" // No cambiar
 nomover= `
 ● Creado Por Kev Mo
-● Suscribete a Guedel Innovatión
 ● Versión 1.0
 ● Modulos Actualizados
 `
-nomober2 = "Creditos Kev OFC julsModerss"
+nomober2 = "Creditos Kev OFC"
 
 //Conexión 
 async function connectToWhatsApp () {
