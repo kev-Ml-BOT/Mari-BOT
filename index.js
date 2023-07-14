@@ -40,7 +40,7 @@ const { everyLimit } = require("async")
 const { env } = require("process")
 // CONSTANTES CREADAS
 
-prefixo = "" // Cambiar Prefijo
+prefixo = "/" // Cambiar Prefijo
 nomebot = "luci Bot" // Cambiar nombre del Bot
 vers = "1.0"
 
