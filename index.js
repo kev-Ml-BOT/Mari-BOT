@@ -110,7 +110,7 @@ const budy = (type === 'conversation') ? info.message.conversation : (type === '
 
 var pes = (type === 'conversation' && info.message.conversation) ? info.message.conversation : (type == 'imageMessage') && info.message.imageMessage.caption ? info.message.imageMessage.caption : (type == 'videoMessage') && info.message.videoMessage.caption ? info.message.videoMessage.caption : (type == 'extendedTextMessage') && info.message.extendedTextMessage.text ? info.message.extendedTextMessage.text : ''
 
-
+/*
 // BIENVENIDA
 anita.ev.on('group-participants.update', async (anu) => {
   if(!welkom.includes(anu.id)) return 
@@ -145,7 +145,7 @@ ${groupDesc}
 ━━━━━━━━━━━━━━━━━
 Para solicitar mas información abra el menu de comandos escribiendo Menu.
 
-${nomebot} ${Vers}
+${nomebot} ${Version}
 `
 
 anita.sendMessage (ale.id,{image : foto0, caption : lucita})
@@ -175,7 +175,7 @@ anita.sendMessage (ale.id,{image : foto2, caption : lucita2})
   console.log('Error: % s', color("red"))
  }
 })
-
+*/
 
 // Constantes Creadas Por Juls y kev
 
@@ -716,8 +716,10 @@ case 'agregar' :
           break
 
           case 'welcome' : 
-        case 'bienvenida': 
-        if(!isGroup) return enviar(respuesta.grupo)
+          case 'bienvenida': 
+          enviar('*HOLA QUERIDO USUARIO DEVIDO A UN ERROR EL COMANDO WELCOME(BIENVENIDA) ESTA SIN FUNCIONAR, GRACIAS POR SU ATENCION..*')
+          break
+          /*if(!isGroup) return enviar(respuesta.grupos)
         if(args.length<1 ) return 
         enviar('👀✍ESCRIBA 1 PARA ACTIVAR Y 0 PARA DESACTIVAR')
         if(!isGroupAdmins) return enviar ('✨😎𝕝𝕠 𝕤𝕚𝕖𝕟𝕥𝕠 𝕞𝕚 𝕜𝕚𝕟𝕘 , 𝕟𝕠 𝕖𝕣𝕖𝕤 𝕦𝕟 𝕒𝕕𝕞𝕚𝕟𝕚𝕤𝕥𝕣𝕒𝕕𝕠𝕣 𝕕𝕖 𝕝𝕠𝕤 𝔾𝕆𝔻𝕊😎✨')
@@ -741,7 +743,7 @@ case 'agregar' :
         }
         break
 
-          
+          */
 
 // Crea tus comandos Aqui
 case "hola":
