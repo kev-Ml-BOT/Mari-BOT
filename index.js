@@ -32,7 +32,7 @@ const latensi = speed() - timestamp
 const antilink = JSON.parse(fs.readFileSync('./archivos/antilink.json'))
 const { TelegraPh } = require("./archivos/telegraPh.js")
  const {
- tmpdir
+ tmpdir, version
 } = require("os")
 const { error } = require("console")
 const { mimeTypes } = require("file-type")
@@ -41,7 +41,9 @@ const { env } = require("process")
 // CONSTANTES CREADAS
 
 prefixo = "/" // Cambiar Prefijo
-nomebot = "luci 1.0" // Cambiar nombre del Bot
+nomebot = "luci Bot" // Cambiar nombre del Bot
+vers = "1.0"
+
 var Creador = "Kev OFC" // No cambiar
 const welkom = JSON.parse(fs.readFileSync('./archivos/welkom.json'))
 const autostick = JSON.parse(fs.readFileSync('./archivos/autostick.json'))
@@ -50,9 +52,9 @@ const autostick = JSON.parse(fs.readFileSync('./archivos/autostick.json'))
 nomedono = "Kev OFC" // No cambiar
 numerodono = "+573136462636" // No cambiar
 nomover= `
-● Creado Por Juls Modders y Kev mo
+● Creado Por Kev Mo
 ● Suscribete a Guedel Innovatión
-● Versión 4.0
+● Versión 1.0
 ● Modulos Actualizados
 `
 nomober2 = "Creditos Kev OFC julsModerss"
@@ -108,47 +110,72 @@ const budy = (type === 'conversation') ? info.message.conversation : (type === '
 
 var pes = (type === 'conversation' && info.message.conversation) ? info.message.conversation : (type == 'imageMessage') && info.message.imageMessage.caption ? info.message.imageMessage.caption : (type == 'videoMessage') && info.message.videoMessage.caption ? info.message.videoMessage.caption : (type == 'extendedTextMessage') && info.message.extendedTextMessage.text ? info.message.extendedTextMessage.text : ''
 
-/*
+
 // BIENVENIDA
 anita.ev.on('group-participants.update', async (anu) => {
   if(!welkom.includes(anu.id)) return 
-  try{
-    const datosgp = await anita.groupMetadata(anu.id)
+try {
 
-    if(anu.action == 'add') {
+const groupDesc = await groupMetadata.desc
+const datosgp = await anita.groupMetadata(ale.id)
 
-      const numerodep = anu.participants[0]
+if (ale.action == 'add') {
 
-      const fotito = fs.readFileSync('./archivos/Bienvenida.jpg')
+const numeropsn = ale.participants [0]
 
-      const Bienvenida = `
-      ╭━〘𝓐𝓝𝓘𝓣𝓐-𝓑𝓞𝓣𝐎𝐓〙\n┃  ⛥╭──────────────\n๖ۣۜۜ͜͡𝐇𝐨𝐥𝐚ঔৣֳ᷌᷈͜͡ ${numerodep}\n💖 𝙱𝙸𝙴𝙽𝚅𝙴𝙽𝙸𝙳@\n┃ ⛥│🤴ᩭ✎𝙽Ú𝙼𝙴𝚁𝙾 𝙳𝙴 𝙼𝙸 𝙲𝚁𝙴𝙰𝙳𝙾𝚁\n┃ ⛥│📔ᩭ✎http://wa.me/573001382233\n┃ ⛥│📚ᩭ✎𝙴𝙽 𝙴𝚂𝚃𝙴 𝙶𝚁𝚄𝙿𝙾 𝙿𝚄𝙴𝙳𝙴𝚂 𝙴𝙽𝙲𝙾𝙽𝚃𝚁𝙰𝚁\n┃ ⛥│🍀ᩭ✎𝙰𝙼𝙸𝚂𝚃𝙰𝙳𝙴𝚂\n┃ ⛥│🤝ᩭ✎𝙰𝙼𝙸𝙶𝙾𝚂\n┃ ⛥│❤️📚ᩭ✎𝙳𝙴𝚂𝙼𝙰𝙳𝚁𝙴┃ ⛥│◦➛😇ᩭ✎𝙲𝙾𝚃𝙾𝚁𝚁𝙴𝙾 𝚈 𝙼Á𝚂\n┃ ⛥│⁉️ᩭ✎𝙰𝚅𝙸𝚂𝙾 𝙸𝙼𝙿𝙾𝚁𝚃𝙰𝙽𝚃𝙴:\n𝙿𝚘𝚛 𝚏𝚊𝚟𝚘𝚛 𝙻𝚎𝚎 𝚕𝚊𝚜 𝚛𝚎𝚐𝚕𝚊𝚜 𝚍𝚎𝚕 𝚐𝚛𝚞𝚙𝚘 𝚙𝚊𝚛𝚊 𝚚𝚞𝚎 𝚎𝚟𝚒𝚝𝚎𝚜 𝚜𝚎𝚛 𝚎𝚕𝚒𝚖𝚒𝚗𝚊𝚍𝚘 𝚢 𝚎𝚟𝚒𝚝𝚎𝚜 𝚝𝚎𝚗𝚎𝚛 𝚙𝚛𝚘𝚋𝚕𝚎𝚖𝚊𝚜 𝚌𝚘𝚗 𝚌𝚛𝚎𝚊𝚍𝚘𝚛 𝚍𝚎𝚕 𝚐𝚛𝚞o\n┃ ⛥│\n┃ ⛥│◦➛🌱OF-KEV𝐈\n┃ ⛥╰───────────\n╰━━━━━━━━━━━──⊷'
+const foto0 = fs.readFileSync('./archivos/media/Bienvenida.jpg')
+const lucita = `━━━━━━━━━━━━━━━━━
+      Bienvenido al Grupo
+━━━━━━━━━━━━━━━━━
++${numeropsn}, es un gusto.
+─────────────────
+        Reglas del Bot
+─────────────────
+─ Porfavor, respeta a los integrantes de este grupo.
+─ Se amable con todos.
+─ No contenido +18
+─ No Spam
+─ Disfruta del Grupo :'D
+─────────────────
+By ${nomedono} ORG
+─────────────────
+       Reglas del Grupo
+─────────────────
+${groupDesc}
+━━━━━━━━━━━━━━━━━
+Para solicitar mas información abra el menu de comandos escribiendo Menu.
 
-      ${numerodep}
+${nomebot} ${Vers}
+`
 
-      `
-      anita.sendMessage(anu.id,{image : fotito, caption : Bienvenida})
-     }
+anita.sendMessage (ale.id,{image : foto0, caption : lucita})
+}
+if (ale.action == 'remove') {
 
-     if(anu.action == 'remove') {
+const numeropsn2 = ale.participants [0]
 
-      const numerodep = anu.participants[0]
+const foto2 = fs.readFileSync('./archivos/media/Despedida.jpg')
+const lucita2 = `
+━━━━━━━━━━━━━━━━━
+   Adios Amigo
+━━━━━━━━━━━━━━━━━
++${numeropsn2}, que Dios te bendiga siempre.
+─────────────────
+Espero que haigas disfrutado del grupo tanto como nosotros...
+━━━━━━━━━━━━━━━━━
 
-      const fotito2 = fs.readFileSync('./archivos/Despedida.jpg')
+${nomebot} ${version}
+`
+anita.sendMessage (ale.id,{image : foto2, caption : lucita2})
 
-      const Despedida = `
-     
-       ╭━〘𝓐𝓝𝓘𝓣𝓐-𝓑𝓞𝓣𝐎𝐓〙\n┃ ⛥╭──────────────\n${numerodep}\n𝐒𝐚𝐥𝐢ó 𝐝𝐞𝐥 𝐠𝐫𝐮𝐩𝐨 𝐧𝐢 𝐦𝐨𝐝𝐨 𝐪𝐮𝐞 𝐭𝐞 𝐯𝐚𝐲𝐚 𝐛𝐢𝐞𝐧 𝐇𝐚𝐬𝐭𝐚 𝐥𝐚 𝐩𝐫ó𝐱𝐢𝐦𝐚 𝐪𝐮𝐞 𝐃𝐢𝐨𝐬 𝐭𝐞 𝐛𝐞𝐧𝐝𝐢𝐠𝐚\n┃ ⛥│🌱OF-KEV𝐈☘\n┃ ⛥╰───────────\n╰━━━━━━━━━━━──⊷'
-      `
-      anita.sendMessage(anu.id,{image : fotito2, caption : Despedida})
-    }
+}
 
- } catch(e) {
+
+} catch(e) {
   console.log('Error: % s', color("red"))
  }
 })
 
-*/
 
 // Constantes Creadas Por Juls y kev
 
@@ -689,9 +716,8 @@ case 'agregar' :
           break
 
           case 'welcome' : 
-          case 'bienvenida': 
-          enviar('*HOLA QUERIDO USUARIO DEVIDO A UN ERROR EL COMANDO WELCOME(BIENVENIDA) ESTA SIN FUNCIONAR, GRACIAS POR SU ATENCION..*')
-          /*if(!isGroup) return enviar(respuesta.grupos)
+        case 'bienvenida': 
+        if(!isGroup) return enviar(respuesta.grupo)
         if(args.length<1 ) return 
         enviar('👀✍ESCRIBA 1 PARA ACTIVAR Y 0 PARA DESACTIVAR')
         if(!isGroupAdmins) return enviar ('✨😎𝕝𝕠 𝕤𝕚𝕖𝕟𝕥𝕠 𝕞𝕚 𝕜𝕚𝕟𝕘 , 𝕟𝕠 𝕖𝕣𝕖𝕤 𝕦𝕟 𝕒𝕕𝕞𝕚𝕟𝕚𝕤𝕥𝕣𝕒𝕕𝕠𝕣 𝕕𝕖 𝕝𝕠𝕤 𝔾𝕆𝔻𝕊😎✨')
@@ -715,7 +741,7 @@ case 'agregar' :
         }
         break
 
-          */
+          
 
 // Crea tus comandos Aqui
 case "hola":
@@ -2567,6 +2593,9 @@ case 'gay':// Sem Fotos
   await delay(5000)
   enviar(`${pushname} Su porcentaje de hetero es de  : ${aleth}%`)
   break
+
+
+
 
   case 'retos':
     case 'aleatorio':
