@@ -3039,14 +3039,14 @@ break
 // --------------- LU CI ----------
 
 case 'luci': case 'Luci':
-  const luci = ['holaa', 'hello','Que pasa'] 
+  const luci = ['holaa', 'hello','Que pasa','Si hola que nesecitas','q'] 
   const luci1 = Math.floor(Math.random()*luci.length)
   const luci2 = luci[luci1]
   enviar(luci2)
   break
 
   case 'lucipasaporno':
-    const lucipo = ['Naaa', 'Pasa tu', '¿Quieres Ban?','Uy Eso es del DIABLOOOO' ] 
+    const lucipo = ['Naaa', 'Pasa tu', '¿Quieres Ban?','Uy Eso es del DIABLOOOO','pasa tu pack mejor' ] 
     const lucipo1 = Math.floor(Math.random()*lucipo.length)
     const lucipo2 = lucipo[lucipo1]
     enviar(lucipo2)
