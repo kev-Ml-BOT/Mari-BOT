@@ -548,6 +548,8 @@ const isQuotedProduct = type === "extendedTextMessage" && content.includes("prod
 const iswelkom = isGroup ? welkom.includes(from) : false 
 const {videoToWebp,imageToWebp,writeExifImg,writeExifVid} = require('./archivos/stickersss.js')
 
+const separar = body.trim().split(/ +/).slice(1)
+const x = separar.join(' ')
 
 
 const getFileBuffer = async (mediakey, MediaType) => {
@@ -599,12 +601,78 @@ if (isGroup && isGroup) console.log(`${color('┏━━━━━━━━━┅�
  if (!isGroup && isGroup) console.log(`${color('┏━━━━━━━━━┅┅┄┄⟞⟦ ⟝┄┄┉┉━━━━━━━━━┓', 'yellow')}\n${color('┃', 'yellow')} ${color('Número:', 'yellow')} ${color(sender.split('@')[0], 'white')}\n${color('┃', 'yellow')} ${color('Nombre:', 'yellow')} ${color(pushname, 'white')}\n${color('┃', 'yellow')} ${color('Horário:', 'yellow')} ${color(time, 'white')}\n${color('┃', 'yellow')} ${color('comando:', 'yellow')} ${color('No', 'white')}\n${color('┃', 'yellow')} ${color('Palabras:', 'yellow')} ${color(budy.length, 'white')}\n${color('┃', 'yellow')} ${color('Grupo:', 'yellow')} ${color(groupName, 'white')}\n${color('┗━━━━━━━━┅┅┄┄⟞⟦⟧⟝┄┄┉┉━━━━━━━━┛', 'yellow')}`)
 }
 
+
+//play
+
+const getBuffer = async (url, options) => {
+	try {
+		options ? options : {}
+		const res = await axios({
+			method: "get",
+			url,
+			headers: {
+				'DNT': 1,
+				'Upgrade-Insecure-Request': 1
+			},
+			...options,
+			responseType: 'arraybuffer'
+		})
+		return res.data
+	} catch (err) {
+		return err
+	}
+}
+async function fetchJson (url, options) {
+    try {
+        options ? options : {}
+        const res = await axios({
+            method: 'GET',
+            url: url,
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'
+            },
+            ...options
+        })
+        return res.data
+    } catch (err) {
+        return err
+    }
+}
+
+
+
 //comandos con prefixo
 
 
 
 
 switch(comando) {
+
+  case 'play':
+    try {
+    await enviar(`solo un momento `)
+    const api = await fetchJson(`https://silverstars.shop/api/download/play?&nome=${x}&apikey=mB8ihe4y`)
+    const texto = `Titulo: ${api.título}
+    Canal: ${api.canal}
+    Publicado: ${api.publicado}
+    visualizaciones: ${api.visualizações}
+    `
+    const buffer = await getBuffer(api.thumb) 
+    
+    await anita.sendMessage(from, {image: buffer, caption: texto },{quoted: info})
+    anita.sendMessage(from, {audio: await getBuffer(api.link), mimetype: 'audio/mpeg', fileName: `${api.título}.mp3`,})
+    } catch (erro) {
+    console.log(erro)
+    }
+    break
+
+
+   
+
+    
+
+
+
 
 
   case  'listadmins':
@@ -2983,9 +3051,65 @@ case 'fraseromantica': case 'frases' :
         enviar(piro3)
         break
 
- case 'menu7':
-  enviar('EL MENU7 ESTA EN DESARROLLO')
-break
+          case 'menu7':
+              enviar(respuesta.menu)
+               const menu7 = fs.readFileSync('./archivos/media/MENU7')
+              const men7 = `
+      
+      ╭─────────────◆ 
+      ┃ ✯〘luci-BOT〙
+      ┃ ✯╭──────────◆
+      ┃ ✯│▢ʜᴏʟᴀ: ${pushname}
+      ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
+      ┃ ✯│  MENU DESC
+      ┃ ✯╰───────────◆
+      ╰━━━━━━━━━━━──⊷
+      ╭─────────────◆ 
+      ┃ ✯〘luci-BOT〙
+      ┃ ✯╭──────────◆
+      ┃ ✯│▢ʜᴏʟᴀ: ${pushname}
+      ┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
+      ┃ ✯│▢ɴᴜᴍᴇʀᴏ: wa.me/+573136463626
+      ┃ ✯│▢ғᴇᴄʜᴀ: ${data} , ${hora}
+      ┃ ✯╰───────────◆
+      ╰━━━━━━━━━━━──⊷
+      
+      ╭─────────────◆ 
+      ┃✯- DESCARGADOR
+      ┃ ✯ HOLA POR EL MOMENTO SOLO ESTA EL COMANDO PLAY 
+      ┃ ✯ PROXIMA ACTUALIZACION LOS DEMAS COMANDOS XD
+      ┃ ✯╭──────────◆
+      ┃ ✯│${prefixo} play
+      ┃ ✯╰───────────◆
+      ╰━━━━━━━━━━━──⊷
+      ╭─────────────◆ 
+      ┃✯----luci-Bᴏᴛ----⦿
+      ┃✯----V-1.0----⦿
+      ╰━━━━━━━━━━━──⊷
+      
+      `
+      enviarimagencap(menu7,men7)
+      break
+
+case 'play':
+  try {
+  await enviar(`solo un momento `)
+  const api = await fetchJson(`https://silverstars.shop/api/download/play?&nome=${x}&apikey=mB8ihe4y`)
+  const texto = `Titulo: ${api.título}
+  Canal: ${api.canal}
+  Publicado: ${api.publicado}
+  visualizaciones: ${api.visualizações}
+  `
+  const buffer = await getBuffer(api.thumb) 
+  
+  await anita.sendMessage(from, {image: buffer, caption: texto },{quoted: info})
+  anita.sendMessage(from, {audio: await getBuffer(api.link), mimetype: 'audio/mpeg', fileName: `${api.título}.mp3`,})
+  } catch (erro) {
+  console.log(erro)
+  }
+  break
+
+
   case 'yamete':
     enviar(respuesta.espere)
   const au = fs.readFileSync('./archivos/media/audios/Yamete-kudasai.mp3')
