@@ -43,7 +43,9 @@ const { env } = require("process")
 prefixo = "/" // Cambiar Prefijo
 nomebot = "luci Bot" // Cambiar nombre del Bot
 vers = "1.0"
-
+var ghost1 =['bah','bah2']
+var ghost2 = ghost1[Math.floor(Math.random() * ghost1.length)]
+const imgale = ghost2
 var Creador = "Kev OFC" // No cambiar
 const welkom = JSON.parse(fs.readFileSync('./archivos/welkom.json'))
 const autostick = JSON.parse(fs.readFileSync('./archivos/autostick.json'))
@@ -833,11 +835,11 @@ case 'antilink':
                 if (isAntiLink) return enviar('Anti-Link está activo')
                 antilink.push(from)
                 fs.writeFileSync('./archivos/antilink.json', JSON.stringify(antilink))
-                enviar('Anti-link estaba activo en el grupo ✔️')
+                enviar('Anti-link Habilitado en el grupo, Ten bonito Dia,Tarde o Noche ✔️')
               } else if (Number(args[0]) === 0) {			
                 antilink.splice(from, 1)
                 fs.writeFileSync('./archivos/antilink.json', JSON.stringify(antilink))
-                enviar('El antilink se ha deshabilitado correctamente en este grupo✔️')
+                enviar('El antilink se ha deshabilitado correctamente en este grupo, Ten bonito Dia,Tarde o Noche ✔️')
               } else {
                 enviar('1 para activar, 0 para desactivar ')
               }
@@ -1007,6 +1009,7 @@ const menuss = `
 ┃ ✯│${prefixo} menu5
 ┃ ✯│${prefixo} menu6
 ┃ ✯│${prefixo} menu7
+┃ ✯│${prefixo} menu8
 ┃ ✯╰───────────◆
 ╰━━━━━━━━━━━──⊷
 ╭─────────────◆ 
@@ -3053,7 +3056,7 @@ case 'fraseromantica': case 'frases' :
 
           case 'menu7':
               enviar(respuesta.menu)
-               const menu7 = fs.readFileSync('./archivos/media/MENU7')
+               const menu7 = fs.readFileSync('./archivos/media/MENU7.mp4')
               const men7 = `
       
       ╭─────────────◆ 
@@ -3099,6 +3102,7 @@ case 'play':
   Canal: ${api.canal}
   Publicado: ${api.publicado}
   visualizaciones: ${api.visualizações}
+  Duracion: ${api.duracao}
   `
   const buffer = await getBuffer(api.thumb) 
   
@@ -3109,11 +3113,37 @@ case 'play':
   }
   break
 
+  case 'play2':
+    try {
+    await enviar(`solo un momento `)
+    const api = await fetchJson(` https://silverstars.shop/api/download/playv?&nome=${x}&apikey=mB8ihe4y`)
+    const texto = `Titulo: ${api.título}
+    Canal: ${api.canal}
+    Publicado: ${api.publicado}
+    visualizaciones: ${api.visualizações}
+    Duracion: ${api.duracao}
+    `
+    const buffer = await getBuffer(api.thumb) 
+    
+    await anita.sendMessage(from, {image: buffer, caption: texto },{quoted: info})
+    anita.sendMessage(from, {video: await getBuffer(api.link), mimetype: 'video/mpeg', fileName: `${api.título}.mp4`,})
+    } catch (erro) {
+    console.log(erro)
+    }
+    break
 
-  case 'yamete':
-    enviar(respuesta.espere)
-  const au = fs.readFileSync('./archivos/media/audios/Yamete-kudasai.mp3')
-  enviaraudios(au)
+
+
+case 'aleatoria' :
+{
+   enviar(`${name}`)
+}
+break
+
+case 'yamete':
+enviar(respuesta.espere)
+const au = fs.readFileSync('./archivos/media/audios/Yamete-kudasai.mp3')
+enviaraudios(au)
 break
 
 
@@ -3183,19 +3213,366 @@ case 'luci': case 'Luci':
       enviar(lucili2)
       break
 
+      case 'luci':
+
 // actualizacion
 case 'newupdate':
 enviar('*Hola Querido usuario Estos son los nuevos comandos no es ACTUALIZACIÓN general*\n\n*ACTUALIZACIÓN GENERAL SE RETRASA DEVIDO A UN ERROR DE APIS*\n\n Se agregaron..\n\n */setdc (cambia la descripción del grupo)*\n*/listadmin (lista de los admins)*\n*/nar o tambien /narcisista*')
 break
+
+// ----------------  M E N U 8 -----------------
+
+case 'menu8':
+  enviar(respuesta.menu)
+   const menu8 = fs.readFileSync('./archivos/media/menu.jpg')
+  const men8 = `
+
+╭─────────────◆ 
+┃ ✯〘luci-BOT〙
+┃ ✯╭──────────◆
+┃ ✯│▢ʜᴏʟᴀ: ${pushname}
+┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
+┃ ✯│  MENU AUDIOS
+┃ ✯╰───────────◆
+╰━━━━━━━━━━━──⊷
+╭─────────────◆ 
+┃ ✯〘luci-BOT〙
+┃ ✯╭──────────◆
+┃ ✯│▢ʜᴏʟᴀ: ${pushname}
+┃ ✯│▢ᴏᴡɴᴇʀ:ᴏғᴄ➟kev
+┃ ✯│▢ɴᴜᴍᴇʀᴏ: wa.me/+573136463626
+┃ ✯│▢ғᴇᴄʜᴀ: ${data} , ${hora}
+┃ ✯╰───────────◆
+╰━━━━━━━━━━━──⊷
+
+╭─────────────◆ 
+┃✯- AUDIOS 
+┃ ✯ TAL CUAL COMO ESTA Y SIN PREFIXO :D
+┃ ✯╭──────────◆
+┃ ✯│ a
+┃ ✯│ Admi
+┃ ✯│ Bañate
+┃ ✯│ Baneado
+┃ ✯│ Bff
+┃ ✯│ Boanoite
+┃ ✯│ Boatarde
+┃ ✯│ Bot
+┃ ✯│ Buenos dias
+┃ ✯│ Cancion
+┃ ✯│ Chica
+┃ ✯│ Gay
+┃ ✯│ Importa
+┃ ✯│ Elmo
+┃ ✯│ Epico
+┃ ✯│ Puto
+┃ ✯│ Feliz cumple
+┃ ✯│ Fiesta
+┃ ✯│ Gay2
+┃ ✯│ Gemidos
+┃ ✯│ Hola
+┃ ✯│ Insultar
+┃ ✯│ Mauu
+┃ ✯│ Phonk
+┃ ✯│ Murio
+┃ ✯│ Navidad
+┃ ✯│ Noche
+┃ ✯│ Oh-tio
+┃ ✯│ Onichan
+┃ ✯│ Otaku
+┃ ✯│ Rawr
+┃ ✯│ Shitpost
+┃ ✯│ Siuu
+┃ ✯│ Te amo
+┃ ✯│ Toma
+┃ ✯│ Tu
+┃ ✯│ UwU
+┃ ✯│ Vengo
+┃ ✯│ Vete a la vrg
+┃ ✯│ Viernes
+┃ ✯│ Vivan
+┃ ✯╰───────────◆
+╰━━━━━━━━━━━──⊷
+╭─────────────◆ 
+┃✯----luci-Bᴏᴛ----⦿
+┃✯----V-1.0----⦿
+╰━━━━━━━━━━━──⊷
+
+`
+enviarimagencap(menu8,men8)
+break
+
+
+
+
 
 
 //Comandos sin prefixo
 
 default:
 
+if(budy == "Yamete") {
+  audioh = fs.readFileSync("./archivos/audios/Yamete-kudasai.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+  }
+
+  if(budy == "ora") {
+    audioh = fs.readFileSync("./archivos/audios/ora.mp3");
+    anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+    }
+
+    if(budy == "a") {
+      audioh = fs.readFileSync("./archivos/audios/a.mp3");
+      anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+      }
+
+      if(budy == "A") {
+        audioh = fs.readFileSync("./archivos/audios/a.mp3");
+        anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+        }
+
+        if(budy == "Ara") {
+          audioh = fs.readFileSync("./archivos/audios/Ara.mp3");
+          anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+          }
+
+ if(budy == "Admin") {
+audioh = fs.readFileSync("./archivos/audios/admin.mp3");
+anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+} 
+
+if(budy == "Bañate") {
+  audioh = fs.readFileSync("./archivos/audios/Banate.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+  }
+
+
+  if(budy == "Baneado") {
+    audioh = fs.readFileSync("./archivos/audios/baneado.mp3");
+    anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+    }
+
+
+    if(budy == "Bff") {
+      audioh = fs.readFileSync("./archivos/audios/bff.mp3");
+      anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+      }
+
+      if(budy == "Boanoite") {
+        audioh = fs.readFileSync("./archivos/audios/boanoite.mp3");
+        anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+        }
+
+ if(budy == "Boatarde") {
+  audioh = fs.readFileSync("./archivos/audios/boatarde.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Bot") {
+  audioh = fs.readFileSync("./archivos/audios/bot.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Buenos dias") {
+  audioh = fs.readFileSync("./archivos/audios/Buenos-dias-2.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Cancion") {
+  audioh = fs.readFileSync("./archivos/audios/cancion.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Chica") {
+  audioh = fs.readFileSync("./archivos/audios/chica lgante.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Gay") {
+  audioh = fs.readFileSync("./archivos/audios/DiagnosticadoConGay.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Importa") {
+  audioh = fs.readFileSync("./archivos/audios/dylan1.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Elmo") {
+  audioh = fs.readFileSync("./archivos/audios/Elmo.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Epico") {
+  audioh = fs.readFileSync("./archivos/audios/Epico.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Puto") {
+  audioh = fs.readFileSync("./archivos/audios/Es putoo.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Feliz cumple") {
+  audioh = fs.readFileSync("./archivos/audios/Feliz cumple.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Fiesta") {
+  audioh = fs.readFileSync("./archivos/audios/fiesta.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Fiesta1") {
+  audioh = fs.readFileSync("./archivos/audios/Fiesta1.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Gay2") {
+  audioh = fs.readFileSync("./archivos/audios/gay2.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Gemido") {
+  audioh = fs.readFileSync("./archivos/audios/gemi2.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "hentai") {
+  audioh = fs.readFileSync("./archivos/audios/hentai.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Hola") {
+  audioh = fs.readFileSync("./archivos/audios/Hola.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Insultar") {
+  audioh = fs.readFileSync("./archivos/audios/insultar.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Mauu") {
+  audioh = fs.readFileSync("./archivos/audios/mauu1.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "phonk") {
+  audioh = fs.readFileSync("./archivos/audios/menu.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Murio") {
+  audioh = fs.readFileSync("./archivos/audios/Murio.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+ 
+ if(budy == "Navidad") {
+  audioh = fs.readFileSync("./archivos/audios/navidad.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Noche") {
+  audioh = fs.readFileSync("./archivos/audios/Noche.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "oh-tio") {
+  audioh = fs.readFileSync("./archivos/audios/oh-tio.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Onichan") {
+  audioh = fs.readFileSync("./archivos/audios/Onichan.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Otaku") {
+  audioh = fs.readFileSync("./archivos/audios/otaku.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Rawr") {
+  audioh = fs.readFileSync("./archivos/audios/rawr.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Shitpost") {
+  audioh = fs.readFileSync("./archivos/audios/dylan1.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Siuu") {
+  audioh = fs.readFileSync("./archivos/audios/siu.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Te amo") {
+  audioh = fs.readFileSync("./archivos/audios/Te-amo.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "toma") {
+  audioh = fs.readFileSync("./archivos/audios/toma.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "UwU") {
+  audioh = fs.readFileSync("./archivos/audios/UwU.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Vengo") {
+  audioh = fs.readFileSync("./archivos/audios/vengo.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Vete a la vrg") {
+  audioh = fs.readFileSync("./archivos/audios/vete a la verga.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Viernes") {
+  audioh = fs.readFileSync("./archivos/audios/viernes.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+ if(budy == "Vivan") {
+  audioh = fs.readFileSync("./archivos/audios/vivan.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+
+
+ if(budy == "Tu") {
+  audioh = fs.readFileSync("./archivos/audios/Tu.mp3");
+  anita.sendMessage(from, {audio : audioh, mimetype : 'audio/mp4', ptt : true});
+ }
+// -------------------- L U C I -----------
+
+if(budy == "luci") {
+  enviar('hola')
+}
+
+if(budy == "luci linda") {
+  enviar('Ayy Muchas Gracias')
+}
 
 
 
+if(budy == "Pasen pelis") {
+  enviar('Pasa tu Mejor y deja de Pedir')
+}
 
  }
 } catch (e) {
