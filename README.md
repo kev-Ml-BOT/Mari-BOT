@@ -34,4 +34,8 @@ Sigue estos pasos para clonar y configurar el proyecto:
 
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/TuUsuario/Luci-BOT.git
+   https://github.com/kev-Ml-BOT/Mari-BOT
+   cd Luci-BOT
+npm install
+npm start
+
