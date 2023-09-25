@@ -36,6 +36,8 @@ Sigue estos pasos para clonar y configurar el proyecto:
    ```bash
    https://github.com/kev-Ml-BOT/Mari-BOT
    cd Luci-BOT
-npm install
-npm start
+   npm install
+   npm start
+
+
 
